@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>GRCHive - {{ page.title }}</title>
+        <link rel="stylesheet" href="/assets/css/styles.css">
+        <link rel="manifest" href="/site.webmanifest">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- Google Fonts Roboto -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+        <!-- Material Design Bootstrap -->
+        <link rel="stylesheet" href="/assets/css/mdb.min.css">
+        <script src="https://kit.fontawesome.com/a90e1931a2.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div id="mainContent" class="col-10">
+                    {% include navigation.html %}
+                    {{ content }}
+                    {% include footer.html %}
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="/assets/js/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
+    </body>
+</html>

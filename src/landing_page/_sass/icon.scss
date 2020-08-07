@@ -1,0 +1,23 @@
+.ico {
+    display: inline-block;
+}
+
+.ico:hover {
+    filter: invert(17%) sepia(98%) saturate(2586%) hue-rotate(200deg) brightness(97%) contrast(101%);
+}
+
+.ico-crunchbase {
+    background-image: url("/assets/images/logos/crunchbase.svg");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+.ico.fa-2x {
+    width: 28px;
+    height: 32px;
+}
+
+.ico.fa-7x {
+    width: 140px;
+    height: 112px;
+}

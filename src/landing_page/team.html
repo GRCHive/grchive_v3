@@ -1,0 +1,22 @@
+---
+layout: default
+title: Our Team
+---
+
+<div id="team-div">
+    <div>
+        <p class="h1">Our Team</p>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        {% for person in site.data.team %}
+
+        {% include team_profile.html
+            profile_name=person.name
+            profile_role=person.role
+            profile_image=person.image
+         %}
+        
+        {% endfor %}
+    </div>
+</div>

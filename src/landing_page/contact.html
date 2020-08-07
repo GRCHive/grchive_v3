@@ -1,0 +1,68 @@
+---
+layout: default
+title: Contact Us!
+---
+
+<div id="contact-div">
+    <div class="d-flex justify-content-center info-title">
+        Email
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <div class="d-flex flex-wrap justify-content-center contact-icon-div">
+            <a href="mailto:sales@grchive.com" class="contact-icon">
+                <i class="fas fa-handshake fa-7x"></i>
+            </a>
+            <div class="flex-break"></div>
+            <p class="font-weight-bold">
+                Sales
+            </p>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center contact-icon-div">
+            <a href="mailto:careers@grchive.com" class="contact-icon">
+                <i class="fas fa-briefcase fa-7x"></i>
+            </a>
+            <div class="flex-break"></div>
+            <p class="font-weight-bold">
+                Careers
+            </p>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center contact-icon-div">
+            <a href="mailto:support@grchive.com" class="contact-icon">
+                <i class="fas fa-cogs fa-7x"></i>
+            </a>
+            <div class="flex-break"></div>
+            <p class="font-weight-bold">
+                Support
+            </p>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center">
+            <a href="mailto:contact@grchive.com" class="contact-icon">
+                <i class="fas fa-envelope-square fa-7x"></i>
+            </a>
+            <div class="flex-break"></div>
+            <p class="font-weight-bold">
+                Everything Else
+            </p>
+        </div>
+    </div>
+
+    <hr class="info-hr"/>
+
+    <div class="d-flex justify-content-center info-title">
+        Social Media
+    </div>
+
+    <div class="d-flex justify-content-center">
+        {% for social in site.data.social %}
+            <div class="contact-icon-div">
+                <a href="{{ social.link }}" class="contact-icon">
+                    <i class="{{ social.icon }} fa-7x"></i>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>

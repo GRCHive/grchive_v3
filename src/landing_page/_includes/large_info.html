@@ -1,0 +1,20 @@
+<div class="row justify-content-center info-div">
+    <div class="col-5 {% if include.ltr %}order-first{% else %}order-last{% endif %}">
+        <p class="info-title">
+            {{ include.info_header }}
+        </p>
+        <p class="info-description">
+            {{ include.info_text }}
+        </p>
+    </div>
+
+    <div class="col-5 {% if include.ltr %}order-last{% else %}order-first{% endif %}">
+        <div class="info-image-wrapper">
+            <img
+                class="info-image"
+                src="{{ include.info_image }}"
+            >
+            </img>
+        </div>
+    </div>
+</div>

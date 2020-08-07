@@ -1,0 +1,32 @@
+.info-title {
+    font-weight: 700;
+    font-size: 2.125rem;
+    line-height: 2.5rem;
+    letter-spacing: .0073529412em;
+}
+
+.info-description {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    letter-spacing: .009375em;
+}
+
+.info-image-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.info-image {
+    width: 250px;
+    max-width: 250px;
+}
+
+.info-hr {
+    max-width: 50%;
+    margin-bottom: 40px;
+}
+
+.info-div {
+    margin-bottom: 40px;
+}

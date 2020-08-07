@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="row justify-content-center align-content-center footer-div">
+        <div class="col-3">
+            <div id="footer-logo">
+                <a class="navbar-brand" href="/">
+                    <img
+                        src="/assets/images/grchive.png"
+                        class="brand-navbar-logo"
+                    >
+                    </img>
+                </a>
+            </div>
+
+            <div>
+                {% for social in site.data.social %}
+                    <a href="{{ social.link }}" class="footer-icon">
+                        <i class="{{ social.icon }} fa-2x"></i>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% for item in site.data.footer_nav %}
+            <div class="col-2">
+                <p class="font-weight-bold footer-nav-title">{{ item.name }}</p>
+
+                {% for child in item.children %}
+                    <div class="footer-nav-link">
+                        <a href="{{child.link}}">
+                            {{ child.name }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="row justify-content-center align-content-center" id="footer-legal">
+        <div class="col-3">
+            <p class="footer-text">
+                Icons made by 
+                <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrods">
+                    xnimrodx
+                </a>
+                from
+                <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+            </p>
+        </div>
+
+        <div class="col-9">
+            <div class="d-flex justify-content-end">
+                <p class="footer-text">
+                    Copyright &copy; 2020 GRCHive, Inc.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

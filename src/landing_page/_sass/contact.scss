@@ -1,0 +1,18 @@
+#contact-div {
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-icon-div {
+    margin-right: 32px;
+}
+
+.contact-icon {
+    color: inherit;
+}
+
+#contact-div > .info-title {
+    margin-bottom: 32px;
+}
