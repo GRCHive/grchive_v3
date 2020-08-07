@@ -1,0 +1,19 @@
+.product-int-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+.product-int-image {
+    object-fit: cover;
+    width: 200px;
+    margin-bottom: 8px;
+}
+
+.product-int-todo {
+    background-color: #8B8B8B;
+    font-weight: 700;
+    color: white;
+}

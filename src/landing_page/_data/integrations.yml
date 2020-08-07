@@ -1,0 +1,65 @@
+- name: Databases
+  integrations:
+      - name: PostgreSQL
+        icon: /assets/images/logos/postgresql.png
+        todo: true
+      - name: MySQL
+        icon: /assets/images/logos/mysql.png
+        todo: true
+      - name: MariaDB
+        icon: /assets/images/logos/mariadb.png
+        todo: true
+      - name: Oracle
+        icon: /assets/images/logos/oracle.png
+        todo: true
+      - name: Microsoft SQL
+        icon: /assets/images/logos/mssql.png
+        todo: true
+      - name: IBM DB2
+        icon: /assets/images/logos/ibmdb2.png
+        todo: true
+
+- name: SaaS
+  integrations:
+      - name: QuickBooks Online
+        icon: /assets/images/logos/quickbooks.png
+        todo: true
+      - name: Microsoft Dynamics 365
+        icon: /assets/images/logos/msdynamics.png
+        todo: true
+      - name: GSuite
+        icon: /assets/images/logos/gsuite.png
+        todo: true
+      - name: Microsoft Office 365
+        icon: /assets/images/logos/office365.png
+        todo: true
+
+- name: Network
+  integrations:
+      - name: Cloudflare
+        icon: /assets/images/logos/Cloudflare.png
+        todo: true
+
+- name: IAM
+  integrations:
+      - name: LDAP
+        icon: /assets/images/logos/ldap.png
+        todo: true
+      - name: Active Directory
+        icon: /assets/images/logos/activedirectory.png
+        todo: true
+      - name: Okta
+        icon: /assets/images/logos/okta.png
+        todo: true
+      - name: Auth0
+        icon: /assets/images/logos/auth0.png
+        todo: true
+
+- name: Operating Systems
+  integrations:
+      - name: Windows
+        icon: /assets/images/logos/windows.png
+        todo: true
+      - name: Linux
+        icon: /assets/images/logos/linux.png
+        todo: true

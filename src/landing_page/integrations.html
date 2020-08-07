@@ -1,0 +1,36 @@
+---
+layout: default
+title: Integrations
+---
+
+{% include cta.html %}
+{% include cta_header.html
+    cta_header_title="GRCHive"
+    cta_header_image="/assets/images/generic-banner1.jpg"
+    cta_header_subtitle="Purpose-built integrations for your next audit."
+    cta_header_description="We built connectors with popular SaaS/IaaS products (and others!) so that we can pull the data you need in the format you want for your audits."
+    cta_text="Give me a demo!"
+    cta_show_learn_more=false
+%}
+
+<div class="container-fluid">
+    {% for type in site.data.integrations %}
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <p class="h5 text-center">{{ type.name }}</p>
+                <div class="d-flex flex-wrap justify-content-center">
+                    {% for integration in type.integrations %}
+
+                    {% include integration.html
+                        name=integration.name
+                        icon=integration.icon
+                        todo=integration.todo
+                     %}
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <hr class="info-hr"/>
+    {% endfor %}
+</div>

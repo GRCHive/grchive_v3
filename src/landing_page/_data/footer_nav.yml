@@ -1,3 +1,9 @@
+- name: Product
+  children:
+      - name: Features
+        link: /product.html
+      - name: Integrations
+        link: /integrations.html
 - name: Solutions
   children:
       - name: FSA
