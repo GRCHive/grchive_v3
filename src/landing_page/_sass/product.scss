@@ -4,11 +4,14 @@
     justify-content: center;
     margin-left: 32px;
     margin-right: 32px;
+    margin-bottom: 32px;
+    margin-top: 32px;
 }
 
 .product-int-image {
-    object-fit: cover;
+    object-fit: scale-down;
     width: 200px;
+    height: 200px;
     margin-bottom: 8px;
 }
 
@@ -16,4 +19,14 @@
     background-color: #8B8B8B;
     font-weight: 700;
     color: white;
+}
+
+.product-header {
+    font-weight: 100;
+    font-size: 2.125rem;
+    line-height: 2.5rem;
+    letter-spacing: .0073529412em;
+    color: #1976D2;
+    text-transform: uppercase;
+    text-align: center;
 }

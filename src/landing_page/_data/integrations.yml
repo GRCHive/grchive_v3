@@ -55,6 +55,18 @@
         icon: /assets/images/logos/auth0.png
         todo: true
 
+- name: DevOps
+  integrations:
+      - name: GitHub
+        icon: /assets/images/logos/github.png
+        todo: true
+      - name: GitLab
+        icon: /assets/images/logos/gitlab.png
+        todo: true
+      - name: BitBucket
+        icon: /assets/images/logos/bitbucket.png
+        todo: true
+
 - name: Operating Systems
   integrations:
       - name: Windows

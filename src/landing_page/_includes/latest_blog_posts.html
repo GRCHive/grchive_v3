@@ -1,0 +1,20 @@
+<div class="blog-posts-div">
+    <p class="product-header">Latest Blog Posts</p>
+
+    <div class="d-flex justify-content-center">
+        {% for blog in site.data.blog %}
+            <div class="blog-div">
+                <a class="blog-link text-center" href="{{ blog.url }}">
+                    <img
+                        src="{{ blog.image }}"
+                        class="blog-image"
+                    >
+                    </img>
+
+                    <p>{{ blog.name }}</p>
+                </a>
+
+            </div>
+        {% endfor %}
+    </div>
+</div>

@@ -10,14 +10,14 @@ title: Integrations
     cta_header_subtitle="Purpose-built integrations for your next audit."
     cta_header_description="We built connectors with popular SaaS/IaaS products (and others!) so that we can pull the data you need in the format you want for your audits."
     cta_text="Give me a demo!"
-    cta_show_learn_more=false
+    cta_show_learn_more=true
 %}
 
 <div class="container-fluid">
     {% for type in site.data.integrations %}
         <div class="row justify-content-center">
             <div class="col-8">
-                <p class="h5 text-center">{{ type.name }}</p>
+                <p class="h3 text-center">{{ type.name }}</p>
                 <div class="d-flex flex-wrap justify-content-center">
                     {% for integration in type.integrations %}
 
@@ -31,6 +31,16 @@ title: Integrations
                 </div>
             </div>
         </div>
+
+        <div class="text-center">
+            <span>Don't see an integration you're looking for? We can help.</span>
+            <a href="mailto:sales@grchive.com">Contact Us</a>.
+        </div>
         <hr class="info-hr"/>
     {% endfor %}
+
+    {% include cta_standalone.html
+       cta_title="Want to see how our integrations can help during your audit engagements?"
+       cta_text="Request Demo"
+    %}
 </div>

@@ -18,11 +18,11 @@
         link: /fedramp.html
       - name: ISO27001
         link: /iso27001.html
-- name: Blog
-  link: https://blog.grchive.com
 - name: Company
   children:
     - name: Our Team
       link: /team.html
     - name: Contact Us
       link: /contact.html
+    - name: Blog
+      link: https://blog.grchive.com

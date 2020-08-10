@@ -1,0 +1,28 @@
+.blog-posts-div {
+    margin-top: 32px;
+    margin-right: 32px;
+}
+
+.blog-div {
+    margin: auto;
+    width: 80%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.blog-link {
+    color: inherit;
+    font-weight: 700;
+}
+
+.blog-image {
+    object-fit: cover;
+    width: 400px;
+    max-width: 400px;
+    height: 266.67px;
+    max-height: 266.67px;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -1,0 +1,60 @@
+---
+layout: default
+title: Features
+---
+
+{% include cta.html %}
+{% include cta_header.html
+    cta_header_title="GRCHive"
+    cta_header_image="/assets/images/generic-banner2.jpg"
+    cta_header_subtitle="An audit data intake tool for the modern, digital age."
+    cta_header_description="See how GRCHive can simplify your PBC process by automatically pulling in audit data from IT systems automatically."
+    cta_text="Get me started!"
+    cta_show_learn_more=false
+%}
+
+<p class="product-header">Key Features</p>
+
+
+<div class="container-fluid">
+    {% include large_info.html
+       ltr=true
+       info_header="IT Integrations"
+       info_text="Most modern IT systems and applications have APIs, SDKs, and other interfaces to obtain data programatically. We've built connectors for the systems you encounter during your audits so that you can extract the data you need without having to deal with scripts and code. Spend your time ensuring your clients' risks are controlled - we'll handle the technical details."
+       info_image="/assets/icons/cloud-computing.svg"
+       cta_extra_action="Our Integrations"
+       cta_url="/integrations.html"
+    %}
+
+    <hr class="info-hr"/>
+
+    {% include large_info.html
+       ltr=false
+       info_header="Audit-Friendly Data Processing"
+       info_text="Data can come in all shapes and sizes. We'll process and standardize the data to ensure that only the data you need to perform your tests are presented to you in the format you want. Furthermore, we'll keep track of the raw data and the commands/endpoints used to generate that data so that you can manually reproduce the data if you so choose."
+       info_image="/assets/icons/documents.svg"
+    %}
+
+    <hr class="info-hr"/>
+
+    {% include large_info.html
+       ltr=true
+       info_header="Integrated Audit Frameworks"
+       info_text="Performing a CMMC audit? PCI DSS? HIPAA? We collect and process the data you need into the format that's best suited for whatever test you're performing. Need something more custom? No problem. Create your own frameworks and customize how you want your data to be formatted to maximize your productivity."
+       info_image="/assets/icons/checklist.svg"
+    %}
+
+    <hr class="info-hr"/>
+
+    {% include large_info.html
+       ltr=false
+       info_header="Security"
+       info_text="All data transmitted to, from, and within GRCHive is encrypted using TLS to ensure your organization's and your client's information is protected. We are built on Google Cloud which offers <a href=\"https://cloud.google.com/security/encryption-at-rest\">encryption at rest</a> and is <a href=\"https://cloud.google.com/security/compliance/offerings\">compliant</a> with all regulations and standards. Additionally, we encrypt and verify your data for integrity before storing it on disk using the latest industry standards because we take security seriously."
+       info_image="/assets/icons/security.svg"
+    %}
+
+    {% include cta_standalone.html
+       cta_title="Want an automated data intake solution for your next audit engagement?"
+       cta_text="Request Demo"
+    %}
+</div>

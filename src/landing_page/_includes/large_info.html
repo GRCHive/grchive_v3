@@ -6,6 +6,16 @@
         <p class="info-description">
             {{ include.info_text }}
         </p>
+
+        {% if include.cta_extra_action %}
+        <a
+            class="info-cta"
+            href="{{ include.cta_url }}"
+        >
+            {{ include.cta_extra_action }}
+            <i class="fas fa-chevron-right"></i>
+        </a>
+        {% endif %}
     </div>
 
     <div class="col-5 {% if include.ltr %}order-last{% else %}order-first{% endif %}">
