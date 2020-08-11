@@ -1,6 +1,8 @@
 ---
 layout: default
-title: Integrations
+title: Integrations for automated audit data intake
+meta: Whether you need to retrieve data from databases like PostgreSQL, retrieve trial balances from QuickBooks Online, or even retrieve a user listing from G Suite, we've got you covered with our technical integrations. Contact us today to see how our integrations can improve your next audit engagement.
+permalink: /integrations
 ---
 
 {% include cta.html %}
@@ -17,7 +19,7 @@ title: Integrations
     {% for type in site.data.integrations %}
         <div class="row justify-content-center">
             <div class="col-8">
-                <p class="h3 text-center">{{ type.name }}</p>
+                <h3 class="h3 text-center">{{ type.name }}</h3>
                 <div class="d-flex flex-wrap justify-content-center">
                     {% for integration in type.integrations %}
 

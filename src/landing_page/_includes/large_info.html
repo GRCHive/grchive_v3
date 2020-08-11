@@ -1,8 +1,8 @@
 <div class="row justify-content-center info-div">
     <div class="col-5 {% if include.ltr %}order-first{% else %}order-last{% endif %}">
-        <p class="info-title">
+        <h3 class="info-title">
             {{ include.info_header }}
-        </p>
+        </h3>
         <p class="info-description">
             {{ include.info_text }}
         </p>
@@ -23,6 +23,7 @@
             <img
                 class="info-image"
                 src="{{ include.info_image }}"
+                alt="{{ include.info_header }}"
             >
             </img>
         </div>

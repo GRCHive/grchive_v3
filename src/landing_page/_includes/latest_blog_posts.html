@@ -1,5 +1,5 @@
 <div class="blog-posts-div">
-    <p class="product-header">Latest Blog Posts</p>
+    <h2 class="product-header">Latest Blog Posts</h2>
 
     <div class="d-flex justify-content-center">
         {% for blog in site.data.blog %}
@@ -8,6 +8,7 @@
                     <img
                         src="{{ blog.image }}"
                         class="blog-image"
+                        alt="{{ blog.name }}"
                     >
                     </img>
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         {% if jekyll.environment == "production" %}
         <!-- Google Tag Manager -->
@@ -11,8 +11,11 @@
         <!-- End Google Tag Manager -->
         {% endif %}
 
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html;" charset="utf-8">
         <title>GRCHive - {{ page.title }}</title>
+        <meta name="description" content="{{ page.meta }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <link rel="stylesheet" href="/assets/css/styles.css">
         <link rel="manifest" href="/site.webmanifest">
 

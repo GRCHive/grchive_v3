@@ -1,28 +1,28 @@
 - name: Product
   children:
       - name: Features
-        link: /product.html
+        link: /product
       - name: Integrations
-        link: /integrations.html
+        link: /integrations
 - name: Solutions
   children:
       - name: FSA
-        link: /fsa.html
+        link: /fsa
       - name: CMMC
-        link: /cmmc.html
+        link: /cmmc
       - name: PCI DSS
-        link: /pci.html
+        link: /pci
       - name: HIPAA
-        link: /hipaa.html
+        link: /hipaa
       - name: FedRAMP
-        link: /fedramp.html
+        link: /fedramp
       - name: ISO27001
-        link: /iso27001.html
+        link: /iso27001
 - name: Company
   children:
     - name: Our Team
-      link: /team.html
+      link: /team
     - name: Contact Us
-      link: /contact.html
+      link: /contact
     - name: Blog
       link: https://blog.grchive.com
