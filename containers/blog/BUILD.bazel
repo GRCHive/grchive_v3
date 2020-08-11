@@ -1,0 +1,19 @@
+package(default_visibility=["//visibility:public"])
+load("@io_bazel_rules_docker//container:container.bzl", "container_image")
+load("//build:variables.bzl", "env")
+
+container_image(
+    name = "latest",
+    base = "@wordpress//image",
+    env = {
+        "WORDPRESS_DB_HOST" : "127.0.0.1:3306",
+        "WORDPRESS_CONFIG_EXTRA": """
+@ini_set('upload_max_size' , '20M' );
+        """
+    },
+    files = [
+        "entrypoint.sh",
+        "//deps/gcloud:grchive-v3-sqlclient.json",
+    ],
+    entrypoint = "exec /entrypoint.sh",
+)

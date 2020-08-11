@@ -1,0 +1,57 @@
+package(default_visibility=["//visibility:public"])
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
+load("//deps/bazel:jekyll.bzl", "jekyll_build")
+load("@io_bazel_rules_docker//container:container.bzl", "container_image")
+
+filegroup(
+    name = "jekyll-srcs",
+    srcs = glob([
+        "*.html",
+        "sitemap.xml",
+        "site.webmanifest",
+        "favicon.ico",
+        "robots.txt",
+        "assets/**",
+        "_data/**",
+        "_includes/**",
+        "_layouts/**",
+        "_sass/**",
+    ]),
+)
+
+pkg_tar(
+    name = "jekyll-tar",
+    srcs = [":jekyll-srcs"],
+    strip_prefix = ".",
+)
+
+jekyll_build(
+    name = "site",
+    srcs = [ ":jekyll-tar" ],
+    env = select({
+        "//:production": "production",
+        "//conditions:default": "development",
+    }),
+)
+
+genrule(
+    name = "nginx-config",
+    srcs = ["nginx/nginx.conf"],
+    outs = [
+        "etc/nginx/nginx.conf"
+    ],
+    cmd = "cp $< $@"
+)
+
+container_image(
+    name = "latest",
+    base = "//:nginx-install-certbot",
+    files = [
+            ":nginx-config",
+            "nginx/entrypoint.sh",
+            "etc/nginx/dhparam.pem",
+    ],
+    tars = [ ":site" ],
+    data_path = ".",
+    entrypoint = "exec /nginx/entrypoint.sh",
+)

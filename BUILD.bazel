@@ -1,0 +1,26 @@
+package(default_visibility = ["//visibility:public"])
+load("@io_bazel_rules_docker//docker/package_managers:download_pkgs.bzl", "download_pkgs")
+load("@io_bazel_rules_docker//docker/package_managers:install_pkgs.bzl", "install_pkgs")
+
+config_setting(
+    name = "production",
+    values = {"compilation_mode": "opt"},
+)
+
+config_setting(
+    name = "debug",
+    values = {"compilation_mode": "dbg"},
+)
+
+download_pkgs(
+    name = "nginx-download-certbot",
+    packages = ["certbot", "python3-certbot-nginx"],
+    image_tar = "@nginx//image",
+)
+
+install_pkgs(
+    name = "nginx-install-certbot",
+    image_tar = "@nginx//image",
+    installables_tar = ":nginx-download-certbot.tar",
+    output_image_name = "nginx-install-certbot",
+)

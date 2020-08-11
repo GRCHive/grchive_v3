@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+    wordpress:
+        image: "registry.gitlab.com/grchive/grchive-v3/wordpress:latest"
+        environment:
+            WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+            WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+            WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+            WORDPRESS_INSTANCE_NAME: ${WORDPRESS_INSTANCE_NAME}
+        volumes:
+            - type: bind
+              source: /mnt/stateful_partition/wordpress/html
+              target: /var/www/html
+    nginx:
+        image: "registry.gitlab.com/grchive/grchive/wordpress-v3/nginx:latest"
+        ports:
+            - "80:80"
+            - "443:443"
