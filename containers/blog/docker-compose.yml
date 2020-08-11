@@ -12,7 +12,7 @@ services:
               source: /mnt/stateful_partition/wordpress/html
               target: /var/www/html
     nginx:
-        image: "registry.gitlab.com/grchive/grchive/wordpress-v3/nginx:latest"
+        image: "registry.gitlab.com/grchive/grchive-v3/wordpress_nginx:latest"
         ports:
             - "80:80"
             - "443:443"

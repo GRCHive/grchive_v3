@@ -1,6 +1,5 @@
 package(default_visibility=["//visibility:public"])
 load("@io_bazel_rules_docker//container:container.bzl", "container_image")
-load("//build:variables.bzl", "env")
 
 container_image(
     name = "latest",

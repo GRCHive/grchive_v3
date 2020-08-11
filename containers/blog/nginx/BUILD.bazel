@@ -1,6 +1,4 @@
 package(default_visibility=["//visibility:public"])
-load("@rules_pkg//:pkg.bzl", "pkg_tar")
-load("//deps/bazel:jekyll.bzl", "jekyll_build")
 load("@io_bazel_rules_docker//container:container.bzl", "container_image")
 
 genrule(

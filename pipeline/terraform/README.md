@@ -5,6 +5,20 @@
     * `storage.objects.delete`
     * `storage.objects.get`
     * `storage.objects.list`
+    * `cloudsql.databases.create`
+    * `cloudsql.databases.delete`
+    * `cloudsql.databases.get`
+    * `cloudsql.instances.create`
+    * `cloudsql.instances.delete`
+    * `cloudsql.instances.get`
+    * `cloudsql.sslCerts.create`
+    * `cloudsql.sslCerts.delete`
+    * `cloudsql.sslCerts.get`
+    * `cloudsql.sslCerts.list`
+    * `cloudsql.users.create`
+    * `cloudsql.users.delete`
+    * `cloudsql.users.list`
+    * `cloudsql.users.update`
     * `compute.addresses.create`
     * `compute.addresses.delete`
     * `compute.addresses.get`
