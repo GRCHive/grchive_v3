@@ -4,7 +4,11 @@
     <div class="d-flex justify-content-center">
         {% for blog in site.data.blog %}
             <div class="blog-div">
-                <a class="blog-link text-center" href="{{ blog.url }}">
+                <a
+                    class="blog-link text-center"
+                    href="{{ blog.url }}"
+                    title="{{ blog.name }}"
+                >
                     <img
                         src="{{ blog.image }}"
                         class="blog-image"
