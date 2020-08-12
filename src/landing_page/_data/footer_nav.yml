@@ -8,6 +8,8 @@
   children:
       - name: FSA
         link: /fsa
+      - name: SOX
+        link: /sox
       - name: CMMC
         link: /cmmc
       - name: PCI DSS
