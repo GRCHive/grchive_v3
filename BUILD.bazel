@@ -1,7 +1,12 @@
 package(default_visibility = ["//visibility:public"])
 load("@io_bazel_rules_docker//docker/package_managers:download_pkgs.bzl", "download_pkgs")
 load("@io_bazel_rules_docker//docker/package_managers:install_pkgs.bzl", "install_pkgs")
+load("@bazel_gazelle//:def.bzl", "gazelle")
 
+# gazelle:prefix gitlab.com/grchive/grchive-v3
+gazelle(name = "gazelle")
+
+# Build Settings
 config_setting(
     name = "production",
     values = {"compilation_mode": "opt"},
