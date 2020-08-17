@@ -71,7 +71,7 @@
   integrations:
       - name: GitHub
         icon: /assets/images/logos/github.png
-        todo: true
+        alpha: true
       - name: GitLab
         icon: /assets/images/logos/gitlab.png
         todo: true
