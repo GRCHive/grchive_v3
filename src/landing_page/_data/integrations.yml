@@ -34,6 +34,18 @@
         icon: /assets/images/logos/exchange.svg
         todo: true
 
+- name: IaaS
+  integrations:
+      - name: Google Cloud
+        icon: /assets/images/logos/googlecloud.png
+        todo: true
+      - name: Amazong Web Services
+        icon: /assets/images/logos/aws.png
+        todo: true
+      - name: Azure
+        icon: /assets/images/logos/azure.png
+        todo: true
+
 - name: Network
   integrations:
       - name: Cloudflare

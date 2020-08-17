@@ -724,3 +724,21 @@ def load_golang_deps():
         sum = "h1:RM4zey1++hCTbCVQfnWeKs9/IEsaBLA8vTkd0WVtmH4=",
         version = "v0.3.0",
     )
+    go_repository(
+        name = "com_github_lestrrat_go_iter",
+        importpath = "github.com/lestrrat-go/iter",
+        sum = "h1:FvnrqecqX4zT0wOIbYK1gNgTm0677INEWiFY8UEYggY=",
+        version = "v0.0.0-20200422075355-fc1769541911",
+    )
+    go_repository(
+        name = "com_github_lestrrat_go_jwx",
+        importpath = "github.com/lestrrat-go/jwx",
+        sum = "h1:IkJICAolgmoutGs5go/loBHWtmiUSDADv3NUuN5dk8A=",
+        version = "v1.0.4",
+    )
+    go_repository(
+        name = "com_github_lestrrat_go_pdebug",
+        importpath = "github.com/lestrrat-go/pdebug",
+        sum = "h1:aEZT3f1GGg5RIlHMAy4/4fe4ciOi3SCwYoaURphcB4k=",
+        version = "v0.0.0-20200204225717-4d6bd78da58d",
+    )

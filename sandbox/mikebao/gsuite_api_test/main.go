@@ -4,11 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/saas/gsuite"
-	"gitlab.com/grchive/grchive-v3/shared/utility/http"
-	"golang.org/x/net/context"
-	"golang.org/x/oauth2/google"
+	"gitlab.com/grchive/grchive-v3/shared/utility/auth"
 	"google.golang.org/api/admin/directory/v1"
-	"io/ioutil"
 )
 
 var credentialFname string
@@ -17,22 +14,14 @@ func main() {
 	flag.StringVar(&credentialFname, "cred", "", "Google OAuth Client credentials")
 	flag.Parse()
 
-	credentials, err := ioutil.ReadFile(credentialFname)
+	ts, err := auth_utility.CreateGSuiteOAuthTokenSource(credentialFname, "mike@grchive.com", admin.AdminDirectoryUserReadonlyScope)
 	if err != nil {
-		fmt.Printf("Read Credential Error: %s\n", err.Error())
+		fmt.Printf("Create Token Source Error: %s\n", err.Error())
 		return
 	}
-
-	config, err := google.JWTConfigFromJSON(credentials, admin.AdminDirectoryUserReadonlyScope)
-	if err != nil {
-		fmt.Printf("Generate Config Error: %s\n", err.Error())
-		return
-	}
-	config.Subject = "mike@grchive.com"
-	ts := config.TokenSource(context.Background())
 
 	connector, err := gsuite.CreateGSuiteConnector(&gsuite.EtlGSuiteOptions{
-		Client:     http_utility.CreateOAuth2AuthorizedClient(ts),
+		Client:     auth_utility.CreateGSuiteHttpClient(ts),
 		CustomerId: "01v99vjw",
 	})
 	if err != nil {

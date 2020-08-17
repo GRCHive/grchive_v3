@@ -19,3 +19,7 @@ func CreateSourceInfo() *EtlSourceInfo {
 func (s *EtlSourceInfo) AddCommand(c *EtlCommandInfo) {
 	s.Commands = append(s.Commands, c)
 }
+
+func (s *EtlSourceInfo) MergeWith(other *EtlSourceInfo) {
+	s.Commands = append(s.Commands, other.Commands...)
+}

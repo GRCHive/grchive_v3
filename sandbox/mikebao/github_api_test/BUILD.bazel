@@ -8,8 +8,8 @@ go_binary(
         "*.go",
     ]),
     deps = [
-        "@org_golang_google_api//admin/directory/v1:go_default_library",
-        "//src/shared/golang/etl/connectors/saas/gsuite:lib",
+        "//src/shared/golang/etl/connectors/saas/github:lib",
         "//src/shared/golang/utility/auth:lib",
+        "//src/shared/golang/utility/time:lib",
     ],
 )
