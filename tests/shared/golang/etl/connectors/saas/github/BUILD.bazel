@@ -1,0 +1,37 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "github_utility",
+    srcs = [
+        "mock_github.go",
+    ],
+    importpath = "gitlab.com/grchive/grchive-v3/tests/shared/etl/connectors/saas/github_utility",
+    deps = [
+    ],
+)
+
+go_test(
+    name = "users_test",
+    srcs = ["users_test.go"],
+    deps = [
+        "@com_github_onsi_gomega//:go_default_library",
+        "//src/shared/golang/etl/types:lib",
+        ":github_utility",
+    ],
+    embed = [
+        "//src/shared/golang/etl/connectors/saas/github:lib",
+    ],
+)
+
+go_test(
+    name = "connector_test",
+    srcs = ["connector_test.go"],
+    deps = [
+        "@com_github_onsi_gomega//:go_default_library",
+    ],
+    embed = [
+        "//src/shared/golang/etl/connectors/saas/github:lib",
+    ],
+)

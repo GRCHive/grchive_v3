@@ -46,6 +46,8 @@ func (c *EtlGithubConnectorUser) getUserListingHelper(role string) ([]*types.Etl
 	page := 1
 	const perPage int = 100
 
+	uniqueUsers := map[string]bool{}
+
 	for {
 		endpoint := fmt.Sprintf(
 			"%s/orgs/%s/members?role=%s&page=%d&per_page=%d",
@@ -91,8 +93,19 @@ func (c *EtlGithubConnectorUser) getUserListingHelper(role string) ([]*types.Etl
 			break
 		}
 
+		added := 0
 		for _, u := range body {
-			retUsers = append(retUsers, u.toEtlUser(role))
+			newU := u.toEtlUser(role)
+			if _, ok := uniqueUsers[newU.Username]; ok {
+				continue
+			}
+			uniqueUsers[newU.Username] = true
+			retUsers = append(retUsers, newU)
+			added = added + 1
+		}
+
+		if added == 0 {
+			break
 		}
 
 		cmd := connectors.EtlCommandInfo{
