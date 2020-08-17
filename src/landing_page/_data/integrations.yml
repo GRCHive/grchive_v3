@@ -2,7 +2,7 @@
   integrations:
       - name: PostgreSQL
         icon: /assets/images/logos/postgresql.png
-        todo: true
+        alpha: true
       - name: MySQL
         icon: /assets/images/logos/mysql.png
         todo: true
@@ -29,9 +29,9 @@
         todo: true
       - name: GSuite
         icon: /assets/images/logos/gsuite.png
-        todo: true
-      - name: Microsoft Office 365
-        icon: /assets/images/logos/office365.png
+        alpha: true
+      - name: Microsoft Exchange 365
+        icon: /assets/images/logos/exchange.svg
         todo: true
 
 - name: Network
