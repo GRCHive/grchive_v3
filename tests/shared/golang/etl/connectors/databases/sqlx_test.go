@@ -19,7 +19,7 @@ func TestLoggedQuery(t *testing.T) {
 		rows, cmd, err := db.LoggedQuery(fakeQuery)
 		g.Expect(rows).To(gomega.BeNil())
 		g.Expect(cmd.Command).To(gomega.Equal(fakeQuery))
-		g.Expect(len(cmd.Parameters)).To(gomega.Equal(0))
+		g.Expect(len(cmd.Parameters.(map[string]interface{}))).To(gomega.Equal(0))
 		g.Expect(cmd.RawData).To(gomega.Equal(""))
 		g.Expect(err).To(gomega.Equal(test_utility.FakeError))
 	}
@@ -30,10 +30,10 @@ func TestLoggedQuery(t *testing.T) {
 		rows, cmd, err := db.LoggedQuery(fakeQuery, args...)
 		g.Expect(rows).To(gomega.BeNil())
 		g.Expect(cmd.Command).To(gomega.Equal(fakeQuery))
-		g.Expect(len(cmd.Parameters)).To(gomega.Equal(len(args)))
-		g.Expect(cmd.Parameters["1"]).To(gomega.Equal(args[0]))
-		g.Expect(cmd.Parameters["2"]).To(gomega.Equal(args[1]))
-		g.Expect(cmd.Parameters["3"]).To(gomega.Equal(args[2]))
+		g.Expect(len(cmd.Parameters.(map[string]interface{}))).To(gomega.Equal(len(args)))
+		g.Expect(cmd.Parameters.(map[string]interface{})["1"]).To(gomega.Equal(args[0]))
+		g.Expect(cmd.Parameters.(map[string]interface{})["2"]).To(gomega.Equal(args[1]))
+		g.Expect(cmd.Parameters.(map[string]interface{})["3"]).To(gomega.Equal(args[2]))
 		g.Expect(cmd.RawData).To(gomega.Equal(""))
 		g.Expect(err).To(gomega.Equal(test_utility.FakeError))
 	}

@@ -22,6 +22,7 @@ type EtlGithubConnector struct {
 }
 
 const baseUrl string = "https://api.github.com"
+const graphqlEndpoint string = "https://api.github.com/graphql"
 
 func (c *EtlGithubConnector) GetUserInterface() (connectors.EtlConnectorUserInterface, error) {
 	return c.users, nil

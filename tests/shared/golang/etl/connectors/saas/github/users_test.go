@@ -9,26 +9,20 @@ import (
 	"net/http"
 	"strings"
 	"testing"
+	"time"
 )
 
 func TestUserListingParse(t *testing.T) {
 	g := gomega.NewGomegaWithT(t)
 
+	u1Time := time.Date(2000, 12, 10, 12, 23, 43, 500, time.UTC)
+	u2Time := time.Date(2006, 1, 5, 3, 10, 33, 100, time.UTC)
+
 	client := &github_utility.MockGithubClient{
-		OrgAdminsList: func() (*http.Response, error) {
+		GraphQL: func() (*http.Response, error) {
 			data := fmt.Sprintf(`
-[{"login":"mikebao-grchive","id":69820432,"node_id":"MDQ6VXNlcjY5ODIwNDMy","avatar_url":"https://avatars2.githubusercontent.com/u/69820432?v=4","gravatar_id":"","url":"https://api.github.com/users/mikebao-grchive","html_url":"https://github.com/mikebao-grchive","followers_url":"https://api.github.com/users/mikebao-grchive/followers","following_url":"https://api.github.com/users/mikebao-grchive/following{/other_user}","gists_url":"https://api.github.com/users/mikebao-grchive/gists{/gist_id}","starred_url":"https://api.github.com/users/mikebao-grchive/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/mikebao-grchive/subscriptions","organizations_url":"https://api.github.com/users/mikebao-grchive/orgs","repos_url":"https://api.github.com/users/mikebao-grchive/repos","events_url":"https://api.github.com/users/mikebao-grchive/events{/privacy}","received_events_url":"https://api.github.com/users/mikebao-grchive/received_events","type":"User","site_admin":false}]
-		`)
-			body := ioutil.NopCloser(strings.NewReader(data))
-			return &http.Response{
-				StatusCode: http.StatusOK,
-				Body:       body,
-			}, nil
-		},
-		OrgMembersList: func() (*http.Response, error) {
-			data := fmt.Sprintf(`
-[{"login":"b3h47pte","id":1286844,"node_id":"MDQ6VXNlcjEyODY4NDQ=","avatar_url":"https://avatars0.githubusercontent.com/u/1286844?v=4","gravatar_id":"","url":"https://api.github.com/users/b3h47pte","html_url":"https://github.com/b3h47pte","followers_url":"https://api.github.com/users/b3h47pte/followers","following_url":"https://api.github.com/users/b3h47pte/following{/other_user}","gists_url":"https://api.github.com/users/b3h47pte/gists{/gist_id}","starred_url":"https://api.github.com/users/b3h47pte/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/b3h47pte/subscriptions","organizations_url":"https://api.github.com/users/b3h47pte/orgs","repos_url":"https://api.github.com/users/b3h47pte/repos","events_url":"https://api.github.com/users/b3h47pte/events{/privacy}","received_events_url":"https://api.github.com/users/b3h47pte/received_events","type":"User","site_admin":false}]
-		`)
+{"data":{"organization":{"name":"GRCHive","membersWithRole":{"edges":[{"node":{"name":"Michael Bao","login":"b3h47pte","createdAt":"%s"},"role":"MEMBER"},{"node":{"name":null,"login":"mikebao-grchive","createdAt":"%s"},"role":"ADMIN"}],"pageInfo":{"endCursor":"Y3Vyc29yOnYyOpHOBClgEA==","hasNextPage":false}}}}}
+		`, u1Time.Format(time.RFC3339), u2Time.Format(time.RFC3339))
 			body := ioutil.NopCloser(strings.NewReader(data))
 			return &http.Response{
 				StatusCode: http.StatusOK,
@@ -49,22 +43,26 @@ func TestUserListingParse(t *testing.T) {
 	g.Expect(err).To(gomega.BeNil())
 
 	g.Expect(source).NotTo(gomega.BeNil())
-	g.Expect(len(source.Commands)).To(gomega.Equal(2))
+	g.Expect(len(source.Commands)).To(gomega.Equal(1))
 
 	refUsers := map[string]*types.EtlUser{
 		"mikebao-grchive": &types.EtlUser{
-			Username: "mikebao-grchive",
+			Username:    "mikebao-grchive",
+			FullName:    "",
+			CreatedTime: &u2Time,
 			Roles: map[string]*types.EtlRole{
-				"admin": &types.EtlRole{
-					Name: "admin",
+				"ADMIN": &types.EtlRole{
+					Name: "ADMIN",
 				},
 			},
 		},
 		"b3h47pte": &types.EtlUser{
-			Username: "b3h47pte",
+			Username:    "b3h47pte",
+			FullName:    "Michael Bao",
+			CreatedTime: &u1Time,
 			Roles: map[string]*types.EtlRole{
-				"member": &types.EtlRole{
-					Name: "member",
+				"MEMBER": &types.EtlRole{
+					Name: "MEMBER",
 				},
 			},
 		},
@@ -76,6 +74,9 @@ func TestUserListingParse(t *testing.T) {
 		g.Expect(ok).To(gomega.BeTrue(), "Finding username: "+u.Username)
 
 		g.Expect(u.Username).To(gomega.Equal(refU.Username))
+		g.Expect(u.FullName).To(gomega.Equal(refU.FullName))
+		g.Expect(u.CreatedTime).NotTo(gomega.BeNil())
+		g.Expect(*u.CreatedTime).To(gomega.BeTemporally("~", *refU.CreatedTime, time.Second))
 		g.Expect(len(u.Roles)).To(gomega.Equal(len(refU.Roles)))
 
 		for _, r := range u.Roles {

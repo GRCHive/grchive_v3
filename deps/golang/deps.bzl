@@ -742,3 +742,9 @@ def load_golang_deps():
         sum = "h1:aEZT3f1GGg5RIlHMAy4/4fe4ciOi3SCwYoaURphcB4k=",
         version = "v0.0.0-20200204225717-4d6bd78da58d",
     )
+    go_repository(
+        name = "com_github_machinebox_graphql",
+        importpath = "github.com/machinebox/graphql",
+        sum = "h1:dWKpJligYKhYKO5A2gvNhkJdQMNZeChZYyBbrZkBZfo=",
+        version = "v0.2.2",
+    )

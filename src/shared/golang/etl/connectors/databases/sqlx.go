@@ -16,13 +16,14 @@ type DB struct {
 }
 
 func (d *DB) LoggedQuery(query string, args ...interface{}) (*sqlx.Rows, *connectors.EtlCommandInfo, error) {
+	params := map[string]interface{}{}
 	cmd := connectors.EtlCommandInfo{
 		Command:    query,
-		Parameters: map[string]interface{}{},
+		Parameters: params,
 	}
 
 	for i, val := range args {
-		cmd.Parameters[strconv.Itoa(i+1)] = val
+		params[strconv.Itoa(i+1)] = val
 	}
 
 	rows, err := d.Queryx(query, args...)

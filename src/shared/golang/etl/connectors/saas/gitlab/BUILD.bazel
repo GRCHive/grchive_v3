@@ -7,12 +7,11 @@ go_library(
     srcs = glob([
         "*.go",
     ]),
-    importpath = "gitlab.com/grchive/grchive-v3/shared/etl/connectors/saas/github",
+    importpath = "gitlab.com/grchive/grchive-v3/shared/etl/connectors/saas/gitlab",
     deps = [
         "//src/shared/golang/etl/connectors:lib",
         "//src/shared/golang/etl/types:lib",
         "//src/shared/golang/utility/http:lib",
-        "//src/shared/golang/utility/graphql:lib",
         "@org_golang_x_net//context:go_default_library",
     ],
 )

@@ -8,19 +8,12 @@ import (
 type MockGithubFn func() (*http.Response, error)
 
 type MockGithubClient struct {
-	OrgMembersList MockGithubFn
-	OrgAdminsList  MockGithubFn
+	GraphQL MockGithubFn
 }
 
 func (c *MockGithubClient) Do(req *http.Request) (*http.Response, error) {
-	query := req.URL.Query()
-
-	if req.URL.Path == "/orgs/test/members" {
-		if query.Get("role") == "admin" {
-			return c.OrgAdminsList()
-		} else if query.Get("role") == "member" {
-			return c.OrgMembersList()
-		}
+	if req.URL.Path == "/graphql" {
+		return c.GraphQL()
 	}
 	return nil, errors.New("Invalid path.")
 }

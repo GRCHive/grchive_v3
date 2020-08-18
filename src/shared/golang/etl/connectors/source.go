@@ -2,7 +2,7 @@ package connectors
 
 type EtlCommandInfo struct {
 	Command    string
-	Parameters map[string]interface{}
+	Parameters interface{}
 	RawData    string
 }
 
