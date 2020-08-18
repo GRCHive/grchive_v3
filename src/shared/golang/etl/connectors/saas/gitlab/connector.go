@@ -1,19 +1,13 @@
 package gitlab
 
 import (
-	"encoding/json"
-	"errors"
-	"fmt"
 	"gitlab.com/grchive/grchive-v3/shared/etl/connectors"
 	"gitlab.com/grchive/grchive-v3/shared/utility/http"
-	"golang.org/x/net/context"
-	"io/ioutil"
-	"net/http"
 )
 
 type EtlGitlabOptions struct {
-	Client http_utility.HttpClient
-	OrgId  string
+	Client  http_utility.HttpClient
+	GroupId string
 }
 
 type EtlGitlabConnector struct {
