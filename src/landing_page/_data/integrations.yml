@@ -77,6 +77,12 @@
         alpha: true
       - name: BitBucket
         icon: /assets/images/logos/bitbucket.png
+        alpha: true
+
+- name: Communications
+  integrations:
+      - name: Slack
+        icon: /assets/images/logos/slack.png
         todo: true
 
 - name: Operating Systems

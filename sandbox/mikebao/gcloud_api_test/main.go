@@ -3,9 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/saas/gsuite"
+	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/saas/gcloud"
 	"gitlab.com/grchive/grchive-v3/shared/utility/auth"
-	"google.golang.org/api/admin/directory/v1"
+	"google.golang.org/api/cloudresourcemanager/v1"
+	"google.golang.org/api/iam/v1"
 )
 
 var credentialFname string
@@ -14,15 +15,20 @@ func main() {
 	flag.StringVar(&credentialFname, "cred", "", "Google OAuth Client credentials")
 	flag.Parse()
 
-	ts, err := auth_utility.CreateGoogleOAuthTokenSource(credentialFname, "mike@grchive.com", admin.AdminDirectoryUserReadonlyScope)
+	ts, err := auth_utility.CreateGoogleOAuthTokenSource(
+		credentialFname,
+		"",
+		cloudresourcemanager.CloudPlatformReadOnlyScope,
+		iam.CloudPlatformScope,
+	)
 	if err != nil {
 		fmt.Printf("Create Token Source Error: %s\n", err.Error())
 		return
 	}
 
-	connector, err := gsuite.CreateGSuiteConnector(&gsuite.EtlGSuiteOptions{
-		Client:     auth_utility.CreateGoogleHttpClient(ts),
-		CustomerId: "01v99vjw",
+	connector, err := gcloud.CreateGCloudConnector(&gcloud.EtlGCloudOptions{
+		Client:    auth_utility.CreateGoogleHttpClient(ts),
+		ProjectId: "grchive-v3",
 	})
 	if err != nil {
 		fmt.Printf("Create Connector Error: %s\n", err.Error())
@@ -44,6 +50,9 @@ func main() {
 	fmt.Printf("=================== USERS ===================\n")
 	for _, u := range etlUsers {
 		fmt.Printf("%+v\n", u)
+		for _, r := range u.Roles {
+			fmt.Printf("\t%+v\n", r)
+		}
 	}
 
 	fmt.Printf("=================== SOURCES ===================\n")

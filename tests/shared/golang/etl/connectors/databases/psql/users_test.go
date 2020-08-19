@@ -8,9 +8,8 @@ import (
 	"github.com/onsi/gomega"
 	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/databases"
 	"gitlab.com/grchive/grchive-v3/shared/etl/types"
+	"gitlab.com/grchive/grchive-v3/shared/test_utility"
 	"gitlab.com/grchive/grchive-v3/tests/shared/etl/connectors/databases/psql_utility"
-	"sort"
-	"strings"
 	"testing"
 )
 
@@ -318,57 +317,9 @@ func TestGetUserListing(t *testing.T) {
 		if err != nil {
 			t.Error(err)
 		}
-		// The +1 is for the admin user that we'll ignore.
-		g.Expect(len(users)).To(gomega.Equal(len(expectedUsers) + 1))
-
-		for _, u := range users {
-			if u.Username == "postgres" {
-				continue
-			}
-			refU, ok := expectedUsers[u.Username]
-			g.Expect(ok).To(gomega.BeTrue(), "Failed to find ref user: "+u.Username)
-
-			g.Expect(u.Username).To(gomega.Equal(refU.Username))
-			g.Expect(u.FullName).To(gomega.Equal(""))
-			g.Expect(u.Email).To(gomega.Equal(""))
-			g.Expect(u.CreatedTime).To(gomega.BeNil())
-			g.Expect(u.LastChangeTime).To(gomega.BeNil())
-
-			for rolName, _ := range refU.Roles {
-				_, ok := u.Roles[rolName]
-				g.Expect(ok).To(gomega.BeTrue(), "Failed to find parent role permissions: "+rolName)
-			}
-
-			for rolName, role := range u.Roles {
-				refRole, ok := refU.Roles[rolName]
-				g.Expect(ok).To(gomega.BeTrue(), "Failed to find ref role: "+rolName)
-
-				g.Expect(role.Name).To(gomega.Equal(refRole.Name))
-
-				// Need to do a first pass through the ref role permission keys to ensure
-				// completeness of the object.
-				for object, _ := range refRole.Permissions {
-					_, ok := role.Permissions[object]
-					g.Expect(ok).To(gomega.BeTrue(), "Failed to find permissions: "+object)
-				}
-
-				for object, permissions := range role.Permissions {
-					// Ignore permissions that target the information_schema or pg_catalog
-					if strings.Contains(object, "information_schema") || strings.Contains(object, "pg_catalog") {
-						continue
-					}
-
-					refPermissions, ok := refRole.Permissions[object]
-					g.Expect(ok).To(gomega.BeTrue(), "Failed to find ref permissions: "+object)
-
-					sort.Strings(permissions)
-					sort.Strings(refPermissions)
-					g.Expect(len(permissions)).To(gomega.Equal(len(refPermissions)))
-					for i, p := range permissions {
-						g.Expect(p).To(gomega.Equal(refPermissions[i]))
-					}
-				}
-			}
-		}
+		test_utility.CompareUserListing(g, users, expectedUsers, test_utility.CompareUserListingOptions{
+			UsersToIgnore:             []string{"postgres"},
+			PermissionObjectsToIgnore: []string{"information_schema", "pg_system"},
+		})
 	}
 }

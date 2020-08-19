@@ -18,6 +18,7 @@ go_test(
     deps = [
         "@com_github_onsi_gomega//:go_default_library",
         "//src/shared/golang/etl/types:lib",
+        "//src/shared/golang/test_utility:lib",
         ":gitlab_utility",
     ],
     embed = [

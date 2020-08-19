@@ -8,7 +8,7 @@ import (
 	"io/ioutil"
 )
 
-func CreateGSuiteOAuthTokenSource(jwtFname string, subject string, scopes ...string) (oauth2.TokenSource, error) {
+func CreateGoogleOAuthTokenSource(jwtFname string, subject string, scopes ...string) (oauth2.TokenSource, error) {
 	credentials, err := ioutil.ReadFile(jwtFname)
 	if err != nil {
 		return nil, err
@@ -18,11 +18,15 @@ func CreateGSuiteOAuthTokenSource(jwtFname string, subject string, scopes ...str
 	if err != nil {
 		return nil, err
 	}
-	config.Subject = subject
+
+	if subject != "" {
+		config.Subject = subject
+	}
+
 	ts := config.TokenSource(context.Background())
 	return ts, nil
 }
 
-func CreateGSuiteHttpClient(ts oauth2.TokenSource) http_utility.HttpClient {
+func CreateGoogleHttpClient(ts oauth2.TokenSource) http_utility.HttpClient {
 	return http_utility.CreateOAuth2AuthorizedClient(ts)
 }

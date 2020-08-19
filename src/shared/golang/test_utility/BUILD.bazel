@@ -10,5 +10,7 @@ go_library(
     importpath = "gitlab.com/grchive/grchive-v3/shared/test_utility",
     deps = [
         "@com_github_jmoiron_sqlx//:go_default_library",
+        "@com_github_onsi_gomega//:go_default_library",
+        "//src/shared/golang/etl/types:lib",
     ],
 )

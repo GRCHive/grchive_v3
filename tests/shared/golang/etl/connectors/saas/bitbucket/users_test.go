@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/onsi/gomega"
 	"gitlab.com/grchive/grchive-v3/shared/etl/types"
+	"gitlab.com/grchive/grchive-v3/shared/test_utility"
 	"gitlab.com/grchive/grchive-v3/tests/shared/etl/connectors/saas/bitbucket_utility"
 	"io/ioutil"
 	"net/http"
@@ -52,21 +53,5 @@ func TestUserListingParse(t *testing.T) {
 			},
 		},
 	}
-
-	g.Expect(len(users)).To(gomega.Equal(len(refUsers)))
-	for _, u := range users {
-		refU, ok := refUsers[u.Username]
-		g.Expect(ok).To(gomega.BeTrue(), "Finding username: "+u.Username)
-
-		g.Expect(u.Username).To(gomega.Equal(refU.Username))
-		g.Expect(u.FullName).To(gomega.Equal(refU.FullName))
-		g.Expect(len(u.Roles)).To(gomega.Equal(len(refU.Roles)))
-
-		for _, r := range u.Roles {
-			refRole, ok := refU.Roles[r.Name]
-			g.Expect(ok).To(gomega.BeTrue(), "Finding role: "+r.Name)
-			g.Expect(r.Name).To(gomega.Equal(refRole.Name))
-			g.Expect(len(r.Permissions)).To(gomega.Equal(0))
-		}
-	}
+	test_utility.CompareUserListing(g, users, refUsers, test_utility.CompareUserListingOptions{})
 }

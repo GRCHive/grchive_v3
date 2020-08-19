@@ -3,11 +3,11 @@ package(default_visibility = ["//visibility:public"])
 load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 
 go_library(
-    name = "github_utility",
+    name = "gcloud_utility",
     srcs = [
-        "mock_github.go",
+        "mock_gcloud.go",
     ],
-    importpath = "gitlab.com/grchive/grchive-v3/tests/shared/etl/connectors/saas/github_utility",
+    importpath = "gitlab.com/grchive/grchive-v3/tests/shared/etl/connectors/saas/gcloud_utility",
     deps = [
     ],
 )
@@ -19,10 +19,10 @@ go_test(
         "@com_github_onsi_gomega//:go_default_library",
         "//src/shared/golang/etl/types:lib",
         "//src/shared/golang/test_utility:lib",
-        ":github_utility",
+        ":gcloud_utility",
     ],
     embed = [
-        "//src/shared/golang/etl/connectors/saas/github:lib",
+        "//src/shared/golang/etl/connectors/saas/gcloud:lib",
     ],
 )
 
@@ -33,6 +33,6 @@ go_test(
         "@com_github_onsi_gomega//:go_default_library",
     ],
     embed = [
-        "//src/shared/golang/etl/connectors/saas/github:lib",
+        "//src/shared/golang/etl/connectors/saas/gcloud:lib",
     ],
 )
