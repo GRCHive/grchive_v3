@@ -748,3 +748,21 @@ def load_golang_deps():
         sum = "h1:dWKpJligYKhYKO5A2gvNhkJdQMNZeChZYyBbrZkBZfo=",
         version = "v0.2.2",
     )
+    go_repository(
+        name = "com_github_azure_go_ntlmssp",
+        importpath = "github.com/Azure/go-ntlmssp",
+        sum = "h1:/IBSNwUN8+eKzUzbJPqhK839ygXJ82sde8x3ogr6R28=",
+        version = "v0.0.0-20200615164410-66371956d46c",
+    )
+    go_repository(
+        name = "com_github_go_asn1_ber_asn1_ber",
+        importpath = "github.com/go-asn1-ber/asn1-ber",
+        sum = "h1:pDbRAunXzIUXfx4CB2QJFv5IuPiuoW+sWvr/Us009o8=",
+        version = "v1.5.1",
+    )
+    go_repository(
+        name = "com_github_go_ldap_ldap_v3",
+        importpath = "github.com/go-ldap/ldap/v3",
+        sum = "h1:FBt+5w3q/vPVPb4eYMQSn+pOiz4zewPamYhlGMmc7yM=",
+        version = "v3.2.3",
+    )

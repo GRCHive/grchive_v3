@@ -1,0 +1,12 @@
+{
+    "Uri": "ldap://levelset.stanford.edu",
+    "Config": {
+        "RootDn": "dc=physbam,dc=stanford,dc=edu",
+        "User": {
+            "ParentDn": "ou=Users",
+            "UsernameAttribute": [ "uid" ],
+            "FullNameAttributes": [ "gecos" ],
+            "EmailAttributes" : [ "uid", "@CONSTANT@@stanford.edu"]
+        }
+    }
+}

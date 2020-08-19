@@ -17,6 +17,7 @@ go_library(
         "@org_golang_x_oauth2//jwt:go_default_library",
         "@com_github_lestrrat_go_jwx//jwa:go_default_library",
         "@com_github_lestrrat_go_jwx//jwt:go_default_library",
+        "@com_github_go_ldap_ldap_v3//:go_default_library",
         "//src/shared/golang/utility/http:lib",
         "//src/shared/golang/utility/time:lib",
     ],
