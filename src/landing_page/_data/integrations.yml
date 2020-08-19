@@ -39,7 +39,7 @@
       - name: Google Cloud
         icon: /assets/images/logos/googlecloud.png
         alpha: true
-      - name: Amazong Web Services
+      - name: Amazon Web Services
         icon: /assets/images/logos/aws.png
         todo: true
       - name: Azure
