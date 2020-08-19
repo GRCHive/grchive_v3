@@ -56,7 +56,7 @@
   integrations:
       - name: LDAP
         icon: /assets/images/logos/ldap.png
-        todo: true
+        alpha: true
       - name: Active Directory
         icon: /assets/images/logos/activedirectory.png
         todo: true
