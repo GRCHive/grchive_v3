@@ -50,7 +50,7 @@
   integrations:
       - name: Cloudflare
         icon: /assets/images/logos/Cloudflare.png
-        todo: true
+        alpha: true
 
 - name: IAM
   integrations:
