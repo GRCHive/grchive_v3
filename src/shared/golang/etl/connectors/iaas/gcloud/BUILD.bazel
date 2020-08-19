@@ -7,7 +7,7 @@ go_library(
     srcs = glob([
         "*.go",
     ]),
-    importpath = "gitlab.com/grchive/grchive-v3/shared/etl/connectors/saas/gcloud",
+    importpath = "gitlab.com/grchive/grchive-v3/shared/etl/connectors/iaas/gcloud",
     deps = [
         "//src/shared/golang/etl/connectors:lib",
         "//src/shared/golang/etl/types:lib",

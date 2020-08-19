@@ -5,7 +5,7 @@ import (
 	"github.com/onsi/gomega"
 	"gitlab.com/grchive/grchive-v3/shared/etl/types"
 	"gitlab.com/grchive/grchive-v3/shared/test_utility"
-	"gitlab.com/grchive/grchive-v3/tests/shared/etl/connectors/saas/gcloud_utility"
+	"gitlab.com/grchive/grchive-v3/tests/shared/etl/connectors/iaas/gcloud_utility"
 	"io/ioutil"
 	"net/http"
 	"strings"

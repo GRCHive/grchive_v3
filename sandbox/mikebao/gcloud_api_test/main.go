@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/saas/gcloud"
+	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/iaas/gcloud"
 	"gitlab.com/grchive/grchive-v3/shared/utility/auth"
 	"google.golang.org/api/cloudresourcemanager/v1"
 	"google.golang.org/api/iam/v1"

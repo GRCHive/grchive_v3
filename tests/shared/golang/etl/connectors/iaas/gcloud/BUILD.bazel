@@ -7,7 +7,7 @@ go_library(
     srcs = [
         "mock_gcloud.go",
     ],
-    importpath = "gitlab.com/grchive/grchive-v3/tests/shared/etl/connectors/saas/gcloud_utility",
+    importpath = "gitlab.com/grchive/grchive-v3/tests/shared/etl/connectors/iaas/gcloud_utility",
     deps = [
     ],
 )
@@ -22,7 +22,7 @@ go_test(
         ":gcloud_utility",
     ],
     embed = [
-        "//src/shared/golang/etl/connectors/saas/gcloud:lib",
+        "//src/shared/golang/etl/connectors/iaas/gcloud:lib",
     ],
 )
 
@@ -33,6 +33,6 @@ go_test(
         "@com_github_onsi_gomega//:go_default_library",
     ],
     embed = [
-        "//src/shared/golang/etl/connectors/saas/gcloud:lib",
+        "//src/shared/golang/etl/connectors/iaas/gcloud:lib",
     ],
 )

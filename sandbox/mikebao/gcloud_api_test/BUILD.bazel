@@ -10,7 +10,7 @@ go_binary(
     deps = [
         "@org_golang_google_api//cloudresourcemanager/v1:go_default_library",
         "@org_golang_google_api//iam/v1:go_default_library",
-        "//src/shared/golang/etl/connectors/saas/gcloud:lib",
+        "//src/shared/golang/etl/connectors/iaas/gcloud:lib",
         "//src/shared/golang/utility/auth:lib",
     ],
 )
