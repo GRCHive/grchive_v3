@@ -38,7 +38,7 @@
   integrations:
       - name: Google Cloud
         icon: /assets/images/logos/googlecloud.png
-        todo: true
+        alpha: true
       - name: Amazong Web Services
         icon: /assets/images/logos/aws.png
         todo: true
