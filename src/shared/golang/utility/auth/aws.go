@@ -233,14 +233,14 @@ func (t *awsRoundTripper) createAwsSignature(nw time.Time, req *http.Request) (s
 	return hex.EncodeToString(crypto_utility.Sha256HMAC(kSigning, []byte(signString))), nil
 }
 
-func (t *awsRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
+func (t *awsRoundTripper) addAwsAuthorizationHeaders(req *http.Request) error {
 	nw := t.clock.Now()
 	req.Header.Add("Host", req.URL.Host)
 	req.Header.Add("X-Amz-Date", canonicalAwsTime(nw))
 
 	sig, err := t.createAwsSignature(nw, req)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
 	authHeader := fmt.Sprintf(
@@ -253,7 +253,14 @@ func (t *awsRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
 	)
 
 	req.Header.Add("Authorization", authHeader)
+	return nil
+}
 
+func (t *awsRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
+	err := t.addAwsAuthorizationHeaders(req)
+	if err != nil {
+		return nil, err
+	}
 	return http.DefaultTransport.RoundTrip(req)
 }
 

@@ -148,7 +148,7 @@ func (c *EtlGCloudConnectorUser) GetUserListing() ([]*types.EtlUser, *connectors
 	// 	1) Parse out the given bindings so that we know all the users and service accounts that have
 	// 	   roles in this project.
 	// 	2) For each unique role, determine which permissions that role has.
-	taskPool := mt.NewTaskPool(10, len(body.Bindings))
+	taskPool := mt.NewTaskPool(10)
 	allUsers := map[string]*types.EtlUser{}
 
 	roleCmds := make(chan *connectors.EtlSourceInfo, len(body.Bindings))

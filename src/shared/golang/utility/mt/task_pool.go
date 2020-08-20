@@ -11,32 +11,31 @@ type Job interface {
 type TaskPool struct {
 	ConcurrentJobs int
 
-	jobs chan Job
+	jobs []Job
 }
 
-func NewTaskPool(concurrentJobs int, totalTasks int) *TaskPool {
+func NewTaskPool(concurrentJobs int) *TaskPool {
 	return &TaskPool{
 		ConcurrentJobs: concurrentJobs,
-		jobs:           make(chan Job, totalTasks),
+		jobs:           []Job{},
 	}
 }
 
 func (t *TaskPool) AddJob(j Job) {
-	t.jobs <- j
+	t.jobs = append(t.jobs, j)
 }
 
 func (t *TaskPool) SyncExecute() error {
-	close(t.jobs)
-
 	wg := sync.WaitGroup{}
 
+	jobChan := make(chan Job)
 	allErrs := make(chan error, cap(t.jobs))
 
 	for i := 1; i <= t.ConcurrentJobs; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			for j := range t.jobs {
+			for j := range jobChan {
 				err := j.Do()
 				if err != nil {
 					allErrs <- err
@@ -44,6 +43,11 @@ func (t *TaskPool) SyncExecute() error {
 			}
 		}()
 	}
+
+	for _, j := range t.jobs {
+		jobChan <- j
+	}
+	close(jobChan)
 
 	wg.Wait()
 	close(allErrs)

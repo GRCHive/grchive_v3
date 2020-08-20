@@ -39,9 +39,9 @@
       - name: Google Cloud
         icon: /assets/images/logos/googlecloud.png
         alpha: true
-      - name: Amazon Web Services
+      - name: AWS
         icon: /assets/images/logos/aws.png
-        todo: true
+        alpha: true
       - name: Azure
         icon: /assets/images/logos/azure.png
         todo: true
