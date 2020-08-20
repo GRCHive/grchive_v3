@@ -1,0 +1,15 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@io_bazel_rules_go//go:def.bzl", "go_test")
+
+go_test(
+    name = "aws_test",
+    srcs = ["aws_test.go"],
+    deps = [
+        "@com_github_onsi_gomega//:go_default_library",
+        "//src/shared/golang/test_utility:lib",
+    ],
+    embed = [
+        "//src/shared/golang/utility/auth:lib",
+    ],
+)
