@@ -1,0 +1,9 @@
+name: Gitlab
+url: https://www.gitlab.com
+grcUrl: /integrations/gitlab
+about: Gitlab is a provider of <a href="https://git-scm.com/">Git</a> repositories which is one of the most popular version control systems among developers today. Organizations around the world use Gitlab to store their source code and manage their devops pipeline.
+status: alpha
+icon: /assets/images/logos/gitlab.png
+ops:
+    - name: userListing
+      status: alpha

@@ -1,0 +1,9 @@
+name: Github
+url: https://www.github.com
+grcUrl: /integrations/github
+about: GitHub is a provider of <a href="https://git-scm.com/">Git</a> repositories which is one of the most popular version control systems among developers today. Organizations around the world use GitHub to store their source code and manage their development process.
+status: alpha
+icon: /assets/images/logos/github.png
+ops:
+    - name: userListing
+      status: alpha

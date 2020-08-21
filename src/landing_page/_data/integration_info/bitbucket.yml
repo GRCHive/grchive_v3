@@ -1,0 +1,9 @@
+name: Bitbucket
+url: https://www.bitbucket.org
+grcUrl: /integrations/bitbucket
+about: Bitbucket is a provider of <a href="https://git-scm.com/">Git</a> repositories which is one of the most popular version control systems among developers today. Organizations around the world use Bitbucket to store their source code and manage their development process.
+status: alpha
+icon: /assets/images/logos/bitbucket.png
+ops:
+    - name: userListing
+      status: alpha

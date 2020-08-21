@@ -1,0 +1,22 @@
+---
+layout: default
+title: Automated Audit Data Intake for GSuite
+meta: GRCHive's automated audit data intake solution can help you to automatically obtain data from GSuite. Contact us to see how we can help!
+permalink: /integrations/gsuite
+canonicalUrl: https://www.grchive.com/integrations/gsuite
+---
+
+{% include cta.html %}
+{% include cta_header.html
+    cta_header_title="GRCHive for GSuite"
+    cta_header_image="/assets/images/generic-banner2.jpg"
+    cta_header_description="We can help by automatically pulling in all relevant audit data from G Suite. Say goodbye to chasing after incomplete or incorrect PBCs. Don't worry about dealing with REST APIs, let us handle that."
+    cta_text="I need this!"
+    cta_show_learn_more=true
+%}
+
+
+{% assign obj = site.data.integration_info["gsuite"] %}
+{% include integration_info.html 
+    data=obj
+%}

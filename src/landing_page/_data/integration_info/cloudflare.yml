@@ -1,0 +1,9 @@
+name: Cloudflare
+url: https://www.cloudflare.com
+grcUrl: /integrations/cloudflare
+about: Cloudflare helps secure networks around the world by providing threat detection and DDOS protection with their DNS and CDN services.
+status: alpha
+icon: /assets/images/logos/Cloudflare.png
+ops:
+    - name: userListing
+      status: alpha

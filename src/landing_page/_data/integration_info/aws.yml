@@ -1,0 +1,9 @@
+name: Amazon Web Services
+url: https://aws.amazon.com/
+grcUrl: /integrations/aws
+about: Amazon Web Services (AWS) provides infrastructure as a service and offers easy access to virtual machines, managed databases, and more. Companies around the world in every industry trust Amazon to provide them with the same infrastructure that handles a de facto DDoS attack every holiday season.
+status: alpha
+icon: /assets/images/logos/aws.png
+ops:
+    - name: userListing
+      status: alpha

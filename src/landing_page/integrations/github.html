@@ -1,0 +1,21 @@
+---
+layout: default
+title: Automated Audit Data Intake for Github
+Githubmeta: GRCHive's automated audit data intake solution can help you to automatically obtain data from . Contact us to see how we can help!
+permalink: /integrations/github
+canonicalUrl: https://www.grchive.com/integrations/github
+---
+
+{% include cta.html %}
+{% include cta_header.html
+    cta_header_title="GRCHive for Github"
+    cta_header_image="/assets/images/generic-banner2.jpg"
+    cta_header_description="We can help by automatically pulling in all relevant audit data from Github. Say goodbye to chasing after incomplete or incorrect PBCs. Don't worry about dealing with REST APIs, let us handle that."
+    cta_text="I need this!"
+    cta_show_learn_more=true
+%}
+
+{% assign obj = site.data.integration_info["github"] %}
+{% include integration_info.html 
+    data=obj
+%}

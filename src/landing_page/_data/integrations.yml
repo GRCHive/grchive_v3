@@ -31,6 +31,7 @@
       - name: GSuite
         icon: /assets/images/logos/gsuite.png
         alpha: true
+        page: /integrations/gsuite
       - name: Microsoft Exchange 365
         icon: /assets/images/logos/exchange.svg
         todo: true
@@ -40,9 +41,11 @@
       - name: Google Cloud
         icon: /assets/images/logos/googlecloud.png
         alpha: true
+        page: /integrations/gcloud
       - name: AWS
         icon: /assets/images/logos/aws.png
         alpha: true
+        page: /integrations/aws
       - name: Azure
         icon: /assets/images/logos/azure.png
         todo: true
@@ -61,12 +64,14 @@
       - name: Cloudflare
         icon: /assets/images/logos/Cloudflare.png
         alpha: true
+        page: /integrations/cloudflare
 
 - name: IAM
   integrations:
       - name: LDAP
         icon: /assets/images/logos/ldap.png
         alpha: true
+        page: /integrations/ldap
       - name: Active Directory
         icon: /assets/images/logos/activedirectory.png
         todo: true
@@ -82,12 +87,15 @@
       - name: GitHub
         icon: /assets/images/logos/github.png
         alpha: true
+        page: /integrations/github
       - name: GitLab
         icon: /assets/images/logos/gitlab.png
         alpha: true
+        page: /integrations/gitlab
       - name: BitBucket
         icon: /assets/images/logos/bitbucket.png
         alpha: true
+        page: /integrations/bitbucket
 
 - name: Communications
   integrations:

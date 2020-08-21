@@ -1,0 +1,9 @@
+name: LDAP
+url: https://ldap.com/
+grcUrl: /integrations/lpda
+about: The Lightweight Directory Access Protocol (LDAP) is a standard for interacting with directory servers. Organizations around the world use directory services such as Microsoft's Active Directory to manage and track active members.
+status: alpha
+icon: /assets/images/logos/ldap.png
+ops:
+    - name: userListing
+      status: alpha
