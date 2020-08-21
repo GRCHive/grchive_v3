@@ -16,6 +16,7 @@ filegroup(
         "_includes/**",
         "_layouts/**",
         "_sass/**",
+        "integrations/**",
     ]),
 )
 

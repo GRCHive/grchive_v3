@@ -28,3 +28,8 @@ Note that the `-c opt` option will have no effect on running the site locally.
 If you wish to run the production website (i.e. with Google Analytics):
 
 - `JEKYLL_ENV=production jekyll serve`
+
+### Nginx
+
+- `bazel run //src/landing_page:latest`
+- `docker run --env DISABLE_CERTBOT=1 -p 80:80 bazel/src/landing_page:latest`
