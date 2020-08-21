@@ -1,20 +1,29 @@
-<div class="product-int-div">
-    <img
-        src="{{ include.icon }}"
-        class="product-int-image"
-        alt="{{ include.name }}"
-    >
-    </img>
+{% assign slug = include.name | downcase | url_encode %}
+<a
+{% if include.page %}
+   href="{{ include.page }}"
+{% else %}
+   href="#{{ slug }}"
+{% endif %}
+>
+    <div class="product-int-div" id="{{ slug }}">
+        <img
+            src="{{ include.icon }}"
+            class="product-int-image"
+            alt="{{ include.name }}"
+        >
+        </img>
 
-    {% if include.todo %}
-    <div class="product-int-todo text-center">
-        Coming Soon
-    </div>
-    {% elsif include.alpha %}
-    <div class="product-int-alpha text-center">
-        Alpha
-    </div>
-    {% endif %}
+        {% if include.todo %}
+        <div class="product-int-todo text-center">
+            Coming Soon
+        </div>
+        {% elsif include.alpha %}
+        <div class="product-int-alpha text-center">
+            Alpha
+        </div>
+        {% endif %}
 
-    <p class="h6 text-center">{{ include.name }}</p>
-</div>
+        <p class="h6 text-center">{{ include.name }}</p>
+    </div>
+</a>

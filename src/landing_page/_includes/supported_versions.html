@@ -1,0 +1,11 @@
+<h3 class="text-center">Supported Versions</h3>
+
+<div class="container-fluid">
+    <ul class="list-group row version-container">
+    {% for v in include.versions %}
+        <li class="list-group-item col-6">
+            {{ v }}
+        </li>
+    {% endfor %}
+    </ul>
+</div>

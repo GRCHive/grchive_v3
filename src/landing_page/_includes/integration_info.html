@@ -1,0 +1,94 @@
+{% assign slug = include.data.name | downcase | url_encode %}
+<div class="container-fluid">
+    <h2 class="product-header">{{ include.data.name }}</h2>
+
+    <div class="row justify-content-center integration-info-section">
+        <div class="col-8">
+            <h3>What is {{ include.data.name }}?</h3>
+            <span>{{ include.data.about }}</span>
+
+            <div class="integration-love d-flex justify-content-center">
+                <a href="{{ include.data.url }}">
+                    <img
+                        class="integration-image"
+                        src="{{ include.data.icon }}"
+                        alt="{{ include.data.name }}."
+                    >
+                    </img>
+                </a>
+
+                <div class="d-flex align-items-center integration-plus">
+                    <i class="fas fa-plus fa-2x"></i>
+                </div>
+
+                <a href="/">
+                    <img
+                        class="integration-image"
+                        src="/assets/images/grchive.png"
+                        alt="GRCHive."
+                    >
+                    </img>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center integration-info-section alt">
+        <div class="col-8">
+            {% include supported_data.html
+                ops=include.data.ops
+             %}
+        </div>
+    </div>
+
+    <div class="row justify-content-center integration-info-section">
+        <div class="col-8">
+            {% include supported_services.html
+                services=include.data.services
+             %}
+        </div>
+    </div>
+
+    <div class="row justify-content-center integration-info-section alt">
+        <div class="col-8">
+            {% include supported_versions.html
+                versions=include.data.versions
+             %}
+        </div>
+    </div>
+
+    <div class="row justify-content-center integration-info-section">
+        <div class="col-8">
+            <h3 class="text-center">GRCHive: Automated data intake for your next audit engagement.</h3>
+            <h6 class="text-center">Spend less time chasing after PBC requests for data coming from {{ include.data.name}} and more.</h6>
+
+            <div class="d-flex justify-content-center">
+                <a
+                    class="grc-btn-lg btn btn-primary"
+                    href="/integrations"
+                    title="View All Integrations"
+                >
+                    View All Integrations
+                </a>
+
+                {% if include.data.doc %}
+                <a
+                    class="grc-btn-lg btn btn-info"
+                    href="{{ include.data.doc }}"
+                    title="View {{ include.data.name }} Documentation"
+                >
+                    Documentation
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div>
+        {% assign cta_title = "Need our " | append: include.data.name | append: " integration for your next audit?" %}
+        {% include cta_standalone.html
+           cta_title=cta_title
+           cta_text="Request Demo"
+        %}
+    </div>
+</div>

@@ -1,0 +1,45 @@
+.integration-info-section {
+    min-height: 250px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.integration-info-section.alt {
+    background-color: #F4F4F4;
+}
+
+.integration-image {
+    object-fit: scale-down;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 8px;
+}
+
+.integration-love {
+    margin-top: 16px;
+}
+
+.integration-plus {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.version-container {
+    flex-direction: row !important;
+}
+
+.carousel-indicators.grchive {
+    bottom: -50px;
+}
+
+.carousel-indicators.grchive li {
+    background-color: #000; 
+}
+
+.carousel-control-next-icon.grchive {
+    filter: invert(1);
+}
+
+.carousel-control-prev-icon.grchive {
+    filter: invert(1);
+}

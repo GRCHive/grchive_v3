@@ -1,0 +1,21 @@
+fsa:
+    shortName: FSA
+    chipColor: badge-primary
+sox:
+    shortName: SOX
+    chipColor: badge-secondary
+cmmc:
+    shortName: CMMC
+    chipColor: badge-success
+pci:
+    shortName: PCI DSS
+    chipColor: badge-danger
+hipaa:
+    shortName: HIPAA
+    chipColor: badge-warning
+fedramp:
+    shortName: FedRAMP
+    chipColor: badge-info
+iso27001:
+    shortName: ISO27001
+    chipColor: badge-dark

@@ -3,6 +3,7 @@
       - name: PostgreSQL
         icon: /assets/images/logos/postgresql.png
         alpha: true
+        page: /integrations/postgresql
       - name: MySQL
         icon: /assets/images/logos/mysql.png
         todo: true
@@ -44,6 +45,15 @@
         alpha: true
       - name: Azure
         icon: /assets/images/logos/azure.png
+        todo: true
+      - name: Digital Ocean
+        icon: /assets/images/logos/digitalocean.png
+        todo: true
+
+- name: PaaS
+  integrations:
+      - name: Heroku
+        icon: /assets/images/logos/heroku.png
         todo: true
 
 - name: Network

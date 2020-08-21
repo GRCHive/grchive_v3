@@ -1,0 +1,5 @@
+self-host-postgresql:
+    name: Self-Hosted
+    alt: Self-Hosted PostgreSQL
+    url: https://www.postgresql.org/
+    icon: /assets/images/logos/postgresql.png

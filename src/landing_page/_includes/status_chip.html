@@ -1,0 +1,6 @@
+{% assign obj = site.data.status[include.status] %}
+<div class="status-chip">
+    <span class="badge badge-pill {{ obj.chipColor }}">
+        {{ obj.name }}
+    </span>
+</div>

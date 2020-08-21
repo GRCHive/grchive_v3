@@ -1,0 +1,36 @@
+<h3 class="text-center">Supported Data Intake Operations</h3>
+
+<table class="table table-stripped">
+    <thead class="black white-text">
+        <tr>
+            <th scope="col">Operation</th>
+            <th scope="col">Relevant Audits</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for opKey in include.ops %}
+        {% assign op = site.data.ops[opKey.name] %}
+        <tr>
+            <th class="op-name" scope="row">{{ op.name }}</th>
+            <td>
+                <div class="d-flex op-audit-div">
+                    {% for audit in op.audits %}
+                        <div class="op-audit-chip-div">
+                            {% include framework_chip.html 
+                                framework=audit
+                             %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </td>
+            <td>
+                {% include status_chip.html 
+                    status=opKey.status
+                 %}
+            </td>
+        </tr>
+        {% endfor %}
+    </body>
+</table>
