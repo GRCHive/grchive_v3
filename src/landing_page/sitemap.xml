@@ -9,6 +9,38 @@
     <lastmod>2020-08-21</lastmod>
   </url>
   <url>
+    <loc>https://www.grchive.com/integrations/aws</loc>
+    <lastmod>2020-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/bitbucket</loc>
+    <lastmod>2020-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/cloudflare</loc>
+    <lastmod>2020-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/gcloud</loc>
+    <lastmod>2020-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/gitlab</loc>
+    <lastmod>2020-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/gsuite</loc>
+    <lastmod>2020-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/github</loc>
+    <lastmod>2020-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/ldap</loc>
+    <lastmod>2020-08-21</lastmod>
+  </url>
+  <url>
     <loc>https://www.grchive.com/product</loc>
     <lastmod>2020-08-10</lastmod>
   </url>
@@ -26,27 +58,27 @@
   </url>
   <url>
     <loc>https://www.grchive.com/fsa</loc>
-    <lastmod>2020-08-10</lastmod>
+    <lastmod>2020-08-21</lastmod>
   </url>
   <url>
     <loc>https://www.grchive.com/cmmc</loc>
-    <lastmod>2020-08-10</lastmod>
+    <lastmod>2020-08-21</lastmod>
   </url>
   <url>
     <loc>https://www.grchive.com/pci</loc>
-    <lastmod>2020-08-10</lastmod>
+    <lastmod>2020-08-21</lastmod>
   </url>
   <url>
     <loc>https://www.grchive.com/hipaa</loc>
-    <lastmod>2020-08-10</lastmod>
+    <lastmod>2020-08-21</lastmod>
   </url>
   <url>
     <loc>https://www.grchive.com/fedramp</loc>
-    <lastmod>2020-08-10</lastmod>
+    <lastmod>2020-08-21</lastmod>
   </url>
   <url>
     <loc>https://www.grchive.com/iso27001</loc>
-    <lastmod>2020-08-10</lastmod>
+    <lastmod>2020-08-21</lastmod>
   </url>
   <url>
     <loc>https://blog.grchive.com</loc>
