@@ -4,7 +4,8 @@ fsa:
     chipColor: badge-primary
     url: /fsa
     description: FSA has been used since the days of the ancient Egyptians, Greeks, and Romans to maintain public accounts. It provides independence assurance that management has presented a "true and fair" view of a company's financial performance and position in its financial statements.
-    structure: <p class="text-center">The internal control framework required depends on the organization's processes and is dictated by management.</p>
+    structure:  structures/internal.html
+    enforcer: pcaob
     useCases:
         - public
         - federal
@@ -12,25 +13,83 @@ fsa:
         - postgresql
 sox:
     shortName: SOX
+    fullName: Sarbanes-Oxley
     chipColor: badge-secondary
     url: /sox
+    description: The Sarbanes-Oxley Act is a federal law that reformed and standardized business financial practices in response to corporate accounting scandals in the early 2000s (e.g. Enron). The 2002 act is aimed at publicly held corporation, their internal financial controls, and their financial reporting auditing procedures as performed by external auditing firms. In particular, Section 404 of SOX requires public companies's annual reports to include the company's own assessment of internal controls over financial reporting as well as an independent auditor's attestation.
+    infoUrl: https://www.sec.gov/answers/about-lawsshtml.html#sox2002
+    enforcer: pcaob
+    structure: structures/internal.html
+    useCases:
+        - public
+        - federal
+    integrations:
+        - postgresql
+
 cmmc:
     shortName: CMMC
+    fullName: Cybersecurity Maturity Model Certification
     chipColor: badge-success
     url: /cmmc
+    description: The CMMC was created by the US DoD in 2019 as a response to high profile breaches of DoD data. It is an assessment meant to ensure that appropriate levels of cybersecurity practices and processes are in place for securing government controlled unclassified information (CUI).
+    infoUrl: https://www.acq.osd.mil/cmmc/
+    enforcer: dod
+    structure: structures/cmmc.html
+    useCases:
+        - dod
+    integrations:
+        - postgresql
 pci:
     shortName: PCI DSS
+    fullName: Payment Card Industry Data Security Standards
     chipColor: badge-danger
     url: /pci
+    description: The PCI DSS is an information security standard for all organizations that handle store, process, or transmit cardholder data (CHD) or sensitive authentication data (SAD). The PCI DSS is adminstered and enforced by the PCI SSC which was founded in 2006 by American Express, Discover, JCB International, MasterCard and Visa to align each individual card company's security policies to provide additional protections to the card issuer.
+    infoUrl: https://www.pcisecuritystandards.org/
+    enforcer: pcissc
+    structure: structures/pci.html
+    useCases:
+        - merchant
+    integrations:
+        - postgresql
 hipaa:
     shortName: HIPAA
+    fullName: Health Insurance Portability and Accountability Act
     chipColor: badge-warning
     url: /hipaa
+    description: HIPAA was passed by Congress and signed by President Bill Clinton in 1996. HIPAA mandates industry-wide standards for health care information to protect and to ensure the confidentiality of protected health information (PHI) and personally identifiable information (PII). The scope of HIPAA was expanded with the pasage of the HITECH Act in 2009.
+    infoUrl: https://www.hhs.gov/hipaa/index.html
+    enforcer: hhs
+    structure: structures/hipaa.html
+    useCases:
+        - healthcare
+    integrations:
+        - postgresql
+
 fedramp:
     shortName: FedRAMP
+    fullName: Federal Risk and Authorization Management Program
     chipColor: badge-info
     url: /fedramp
+    description: FedRAMP was created in 2011 by the US OMB to ensure the security and integrity of cloud services provided to federal agencies.
+    infoUrl: https://www.fedramp.gov/
+    enforcer: omb
+    structure: structures/fedramp.html
+    useCases:
+        - federal
+    integrations:
+        - postgresql
+
 iso27001:
     shortName: ISO27001
+    fullName: ISO27001
     chipColor: badge-dark
     url: /iso27001
+    description:  ISO 27001 is used globally by organizations of all sizes to provide requirements for an information security management system (ISMS); however it is not mandatory for any specific compliance certification. It is designed to function as a framework or starting point for an organization’s ISMS controls.
+    infoUrl: https://www.iso.org/isoiec-27001-information-security.html
+    structure: structures/iso27001.html
+    useCases:
+        - public
+    integrations:
+        - postgresql
+

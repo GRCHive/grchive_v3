@@ -1,0 +1,15 @@
+pcaob:
+    name: PCAOB
+    url: https://pcaobus.org/
+dod:
+    name: US Department of Defense
+    url: https://www.defense.gov/
+pcissc:
+    name: Payment Card Industry Security Standards Council
+    url: https://www.pcisecuritystandards.org/
+hhs:
+    name: US Deparment of Health & Human Services
+    url: https://www.hhs.gov
+omb:
+    name: US Office of Management and Budget
+    url: https://www.whitehouse.gov/omb/

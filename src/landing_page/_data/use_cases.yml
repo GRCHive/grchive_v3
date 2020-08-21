@@ -4,3 +4,12 @@ public:
 federal:
     name: Federal Agencies
     icon: /assets/icons/federal.svg
+dod:
+    name: DoD Contractors
+    icon: /assets/images/dodcontractor.png
+merchant:
+    name: Merchants
+    icon: /assets/icons/cafe.svg
+healthcare:
+    name: Healthcare
+    icon: /assets/icons/hospital.svg

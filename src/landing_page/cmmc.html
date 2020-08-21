@@ -10,11 +10,12 @@ canonicalUrl: https://www.grchive.com/cmmc
 {% include cta_header.html
     cta_header_title="GRCHive for CMMC"
     cta_header_image="/assets/images/generic-banner2.jpg"
-    cta_header_description="Looking to do audits for the DoD's upcoming CMMC? We can help."
+    cta_header_description="Looking to do audits for the DoD's upcoming CMMC as a C3PAO? We can help."
     cta_text="Get me started!"
     cta_show_learn_more=true
 %}
 
-<h2 class="product-header">Cybersecurity Maturity Model Certification</h2>
-
-{% include coming_soon.html %}
+{% assign obj = site.data.frameworks["cmmc"] %}
+{% include framework_info.html
+    data=obj
+ %}

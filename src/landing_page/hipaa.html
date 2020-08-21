@@ -15,6 +15,7 @@ canonicalUrl: https://www.grchive.com/hipaa
     cta_show_learn_more=true
 %}
 
-<h2 class="product-header">HIPAA</h2>
-
-{% include coming_soon.html %}
+{% assign obj = site.data.frameworks["hipaa"] %}
+{% include framework_info.html
+    data=obj
+ %}

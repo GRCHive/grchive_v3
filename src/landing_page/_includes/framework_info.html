@@ -1,17 +1,39 @@
 <div class="container-fluid">
     <h2 class="product-header">{{ include.data.fullName }}</h2>
+    {% if include.data.enforcer %}
+    <h6 class="text-center">
+        <span class="font-weight-bold">
+            Enforced By:
+        </span>
+        {% include enforcer.html
+            enforcer=include.data.enforcer
+         %}
+    </h6>
+    {% endif %}
 
     <div class="row justify-content-center integration-info-section">
         <div class="col-8">
             <h3 class="text-center">What is {{ include.data.shortName }}?</h3>
             <p class="text-center">{{ include.data.description }}</p>
+
+            {% if include.data.infoUrl %}
+                <div class="d-flex justify-content-center">
+                    <a
+                        class="grc-btn-lg btn btn-primary"
+                        href="{{ include.data.infoUrl }}"
+                        title="More Information"
+                    >
+                        More Information
+                    </a>
+                </div>
+            {% endif %}
         </div>
     </div>
 
     <div class="row justify-content-center integration-info-section alt">
         <div class="col-8">
             <h3 class="text-center">General Structure</h3>
-            {{ include.data.structure }}
+            {% include {{ include.data.structure }} %}
         </div>
     </div>
 

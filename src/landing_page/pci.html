@@ -15,6 +15,7 @@ canonicalUrl: https://www.grchive.com/pci
     cta_show_learn_more=true
 %}
 
-<h2 class="product-header">Payment Card Indstury Data Security Standard</h2>
-
-{% include coming_soon.html %}
+{% assign obj = site.data.frameworks["pci"] %}
+{% include framework_info.html
+    data=obj
+ %}

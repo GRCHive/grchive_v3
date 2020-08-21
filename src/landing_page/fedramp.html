@@ -15,5 +15,7 @@ canonicalUrl: https://www.grchive.com/fedramp
     cta_show_learn_more=true
 %}
 
-<h2 class="product-header">FedRAMP</h2> 
-{% include coming_soon.html %}
+{% assign obj = site.data.frameworks["fedramp"] %}
+{% include framework_info.html
+    data=obj
+ %}
