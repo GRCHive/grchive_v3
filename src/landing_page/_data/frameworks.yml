@@ -1,21 +1,36 @@
 fsa:
     shortName: FSA
+    fullName: Financial Statement Auditing
     chipColor: badge-primary
+    url: /fsa
+    description: FSA has been used since the days of the ancient Egyptians, Greeks, and Romans to maintain public accounts. It provides independence assurance that management has presented a "true and fair" view of a company's financial performance and position in its financial statements.
+    structure: <p class="text-center">The internal control framework required depends on the organization's processes and is dictated by management.</p>
+    useCases:
+        - public
+        - federal
+    integrations:
+        - postgresql
 sox:
     shortName: SOX
     chipColor: badge-secondary
+    url: /sox
 cmmc:
     shortName: CMMC
     chipColor: badge-success
+    url: /cmmc
 pci:
     shortName: PCI DSS
     chipColor: badge-danger
+    url: /pci
 hipaa:
     shortName: HIPAA
     chipColor: badge-warning
+    url: /hipaa
 fedramp:
     shortName: FedRAMP
     chipColor: badge-info
+    url: /fedramp
 iso27001:
     shortName: ISO27001
     chipColor: badge-dark
+    url: /iso27001

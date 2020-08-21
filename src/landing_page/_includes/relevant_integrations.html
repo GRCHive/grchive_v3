@@ -1,0 +1,37 @@
+<table class="table table-stripped">
+    <thead class="black white-text">
+        <tr>
+            <th scope="col">Integration</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for key in include.integrations %}
+        {% assign integration = site.data.integration_info[key] %}
+        <tr>
+            <th class="op-name" scope="row">
+                <a href="{{ integration.grcUrl }}" title="{{ integration.name }}">
+                    <div class="d-flex align-items-center">
+                        <img
+                            class="integration-table-image"
+                            src="{{ integration.icon }}"
+                            alt="{{ integration.name }}"
+                        >
+                        </img>
+
+                        <span>
+                            {{ integration.name }}
+                        </span>
+                    </div>
+                </a>
+            </th>
+            <td>
+                {% include status_chip.html 
+                    status=integration.status
+                 %}
+            </td>
+        </tr>
+        {% endfor %}
+    </body>
+</table>

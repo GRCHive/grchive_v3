@@ -1,10 +1,20 @@
 .service-caption {
-    width: 200px;
     font-weight: 700;
+}
+
+.service-image-div {
+    margin-left: 16px;
+    margin-right: 16px;
 }
 
 .service-image {
     object-fit: scale-down;
     width: 200px;
     height: 200px;
+}
+
+.service-image-small {
+    object-fit: scale-down;
+    width: 100px;
+    height: 100px;
 }

@@ -1,0 +1,6 @@
+public:
+    name: Public Entities
+    icon: /assets/icons/architecture-and-city.svg
+federal:
+    name: Federal Agencies
+    icon: /assets/icons/federal.svg

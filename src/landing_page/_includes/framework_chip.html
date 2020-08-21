@@ -1,6 +1,8 @@
 {% assign obj = site.data.frameworks[include.framework] %}
-<div class="status-chip">
-    <span class="badge badge-pill {{ obj.chipColor }}">
-        {{ obj.shortName }}
-    </span>
-</div>
+<a href="{{ obj.url }}">
+    <div class="status-chip">
+        <span class="badge badge-pill {{ obj.chipColor }}">
+            {{ obj.shortName }}
+        </span>
+    </div>
+</a>
