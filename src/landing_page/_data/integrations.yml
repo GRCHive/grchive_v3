@@ -52,6 +52,12 @@
       - name: Digital Ocean
         icon: /assets/images/logos/digitalocean.png
         todo: true
+      - name: Linode
+        icon: /assets/images/logos/linode.png
+        todo: true
+      - name: Vultr
+        icon: /assets/images/logos/vultr.png
+        todo: true
 
 - name: PaaS
   integrations:
