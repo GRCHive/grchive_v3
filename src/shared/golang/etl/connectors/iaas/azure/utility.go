@@ -1,9 +1,8 @@
-package aws
+package azure
 
 import (
-	"encoding/xml"
+	"encoding/json"
 	"errors"
-	"fmt"
 	"gitlab.com/grchive/grchive-v3/shared/etl/connectors"
 	"gitlab.com/grchive/grchive-v3/shared/utility/http"
 	"golang.org/x/net/context"
@@ -12,7 +11,7 @@ import (
 	"reflect"
 )
 
-func awsGet(client http_utility.HttpClient, endpoint string, output interface{}) (*connectors.EtlSourceInfo, error) {
+func azureGet(client http_utility.HttpClient, endpoint string, output interface{}) (*connectors.EtlSourceInfo, error) {
 	ctx := context.Background()
 	source := connectors.CreateSourceInfo()
 
@@ -44,10 +43,10 @@ func awsGet(client http_utility.HttpClient, endpoint string, output interface{})
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, errors.New("AWS API Error: " + string(bodyData))
+		return nil, errors.New("Azure API Error: " + string(bodyData))
 	}
 
-	err = xml.Unmarshal(bodyData, reflectOutPtr.Interface())
+	err = json.Unmarshal(bodyData, reflectOutPtr.Interface())
 	if err != nil {
 		return nil, err
 	}
@@ -60,8 +59,7 @@ func awsGet(client http_utility.HttpClient, endpoint string, output interface{})
 	return source, nil
 }
 
-func awsPaginatedGet(client http_utility.HttpClient, resultName string, baseEndpoint string, output interface{}) (*connectors.EtlSourceInfo, error) {
-	marker := ""
+func azurePaginatedGet(client http_utility.HttpClient, baseEndpoint string, output interface{}) (*connectors.EtlSourceInfo, error) {
 	source := connectors.CreateSourceInfo()
 
 	if reflect.TypeOf(output).Kind() != reflect.Ptr {
@@ -73,14 +71,10 @@ func awsPaginatedGet(client http_utility.HttpClient, resultName string, baseEndp
 
 	reflectBaseType := reflect.TypeOf(output).Elem().Elem()
 
+	endpoint := baseEndpoint
 	for {
-		endpoint := baseEndpoint
-		if marker != "" {
-			endpoint = endpoint + fmt.Sprintf("&Marker=%s", marker)
-		}
-
 		responseBodyValue := reflect.New(reflectBaseType)
-		cmdSrc, err := awsGet(client, endpoint, responseBodyValue.Interface())
+		cmdSrc, err := azureGet(client, endpoint, responseBodyValue.Interface())
 		if err != nil {
 			return nil, err
 		}
@@ -88,14 +82,12 @@ func awsPaginatedGet(client http_utility.HttpClient, resultName string, baseEndp
 		reflectOutSlice = reflect.Append(reflectOutSlice, responseBodyValue.Elem())
 		source.MergeWith(cmdSrc)
 
-		result := responseBodyValue.Elem().FieldByName(resultName)
-		isTruncatedValue := result.FieldByName("IsTruncated").Interface().(bool)
-
-		if !isTruncatedValue {
+		nextLink := responseBodyValue.Elem().FieldByName("NextLink").Interface().(string)
+		if nextLink == "" {
 			break
 		}
 
-		marker = result.FieldByName("Marker").Interface().(string)
+		endpoint = nextLink
 	}
 
 	reflectOutPtr.Elem().Set(reflectOutSlice)
