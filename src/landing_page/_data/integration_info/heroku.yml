@@ -1,0 +1,9 @@
+name: Heroku
+url: https://www.heroku.com
+grcUrl: /integrations/heroku
+about: Heroku provides a platform as a service allowing developers to easily build and deploy applications in the cloud.
+status: alpha
+icon: /assets/images/logos/heroku.png
+ops:
+    - name: userListing
+      status: alpha

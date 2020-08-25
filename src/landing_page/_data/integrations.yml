@@ -69,7 +69,8 @@
   integrations:
       - name: Heroku
         icon: /assets/images/logos/heroku.png
-        todo: true
+        alpha: true
+        page: /integrations/heroku
 
 - name: Network
   integrations:
