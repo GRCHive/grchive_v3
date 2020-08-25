@@ -3,20 +3,22 @@ package main
 import (
 	"flag"
 	"fmt"
-	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/iaas/linode"
+	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/paas/heroku"
 	"gitlab.com/grchive/grchive-v3/shared/utility/auth"
 )
 
 var clientId string
 var clientSecret string
+var team string
 
 func main() {
-	flag.StringVar(&clientId, "id", "", "Linode OAuth Client Id")
-	flag.StringVar(&clientSecret, "secret", "", "Linode OAuth Client Secret")
+	flag.StringVar(&clientId, "id", "", "Heroku OAuth Client Id")
+	flag.StringVar(&clientSecret, "secret", "", "Heroku OAuth Client Secret")
+	flag.StringVar(&team, "team", "", "Heroku Team")
 	flag.Parse()
 
 	// Need read_write to access grants for some reason.
-	config := auth_utility.CreateLinodeOAuthConfig(clientId, clientSecret, "http://localhost", "account:read_write")
+	config := auth_utility.CreateHerokuOAuthConfig(clientId, clientSecret, "http://localhost", "global")
 	fmt.Printf("GO HERE: %s\n", config.AuthCodeURL(""))
 
 	fmt.Printf("COPY AND PASTE AUTH CODE: \n")
@@ -29,14 +31,15 @@ func main() {
 
 	fmt.Printf("CODE: %s\n", code)
 
-	ts, err := auth_utility.CreateLinodeOAuthTokenSource(config, code)
+	ts, err := auth_utility.CreateHerokuOAuthTokenSource(config, code)
 	if err != nil {
 		fmt.Printf("Create Token Source Error: %s\n", err.Error())
 		return
 	}
 
-	connector, err := linode.CreateLinodeConnector(&linode.EtlLinodeOptions{
-		Client: auth_utility.CreateLinodeHttpClient(ts),
+	connector, err := heroku.CreateHerokuConnector(&heroku.EtlHerokuOptions{
+		Client:   auth_utility.CreateHerokuHttpClient(ts),
+		TeamName: team,
 	})
 	if err != nil {
 		fmt.Printf("Create Connector Error: %s\n", err.Error())

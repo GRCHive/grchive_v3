@@ -35,12 +35,12 @@ func CreateGithubHttpJWTClient(jwt string) http_utility.HttpClient {
 	return http_utility.CreateHeaderInjectionClient(map[string]string{
 		"Authorization": fmt.Sprintf("Bearer %s", jwt),
 		"Accept":        "application/vnd.github.machine-man-preview+json",
-	})
+	}, nil)
 }
 
 func CreateGithubHttpInstallationClient(token string) http_utility.HttpClient {
 	return http_utility.CreateHeaderInjectionClient(map[string]string{
 		"Authorization": fmt.Sprintf("token %s", token),
 		"Accept":        "application/vnd.github.machine-man-preview+json",
-	})
+	}, nil)
 }

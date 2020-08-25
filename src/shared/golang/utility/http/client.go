@@ -6,17 +6,23 @@ import (
 
 type HeaderInjectionRoundTripper struct {
 	headers map[string]string
+	proxy   http.RoundTripper
 }
 
 func (t *HeaderInjectionRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
 	for k, v := range t.headers {
 		req.Header.Add(k, v)
 	}
-	return http.DefaultTransport.RoundTrip(req)
+
+	if t.proxy != nil {
+		return t.proxy.RoundTrip(req)
+	} else {
+		return http.DefaultTransport.RoundTrip(req)
+	}
 }
 
-func CreateHeaderInjectionClient(headers map[string]string) HttpClient {
+func CreateHeaderInjectionClient(headers map[string]string, proxy http.RoundTripper) HttpClient {
 	return &http.Client{
-		Transport: &HeaderInjectionRoundTripper{headers: headers},
+		Transport: &HeaderInjectionRoundTripper{headers: headers, proxy: proxy},
 	}
 }
