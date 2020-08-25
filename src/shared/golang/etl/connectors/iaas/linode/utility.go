@@ -1,4 +1,4 @@
-package vultr
+package linode
 
 import (
 	"encoding/json"
@@ -12,7 +12,7 @@ import (
 	"reflect"
 )
 
-func vultrGet(client http_utility.HttpClient, endpoint string, output interface{}) (*connectors.EtlSourceInfo, error) {
+func linodeGet(client http_utility.HttpClient, endpoint string, output interface{}) (*connectors.EtlSourceInfo, error) {
 	ctx := context.Background()
 	source := connectors.CreateSourceInfo()
 
@@ -44,7 +44,7 @@ func vultrGet(client http_utility.HttpClient, endpoint string, output interface{
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, errors.New("Vultr API Error: " + string(bodyData))
+		return nil, errors.New("Linode API Error: " + string(bodyData))
 	}
 
 	err = json.Unmarshal(bodyData, reflectOutPtr.Interface())
@@ -60,7 +60,7 @@ func vultrGet(client http_utility.HttpClient, endpoint string, output interface{
 	return source, nil
 }
 
-func vultrPaginatedGet(client http_utility.HttpClient, baseEndpoint string, output interface{}) (*connectors.EtlSourceInfo, error) {
+func linodePaginatedGet(client http_utility.HttpClient, baseEndpoint string, output interface{}) (*connectors.EtlSourceInfo, error) {
 	cursor := ""
 	source := connectors.CreateSourceInfo()
 
@@ -73,14 +73,16 @@ func vultrPaginatedGet(client http_utility.HttpClient, baseEndpoint string, outp
 
 	reflectBaseType := reflect.TypeOf(output).Elem().Elem()
 
+	page := int64(1)
+
 	for {
 		endpoint := baseEndpoint
 		if cursor != "" {
-			endpoint = endpoint + fmt.Sprintf("?cursor=%s", cursor)
+			endpoint = endpoint + fmt.Sprintf("?page=%d", page)
 		}
 
 		responseBodyValue := reflect.New(reflectBaseType)
-		cmdSrc, err := vultrGet(client, endpoint, responseBodyValue.Interface())
+		cmdSrc, err := linodeGet(client, endpoint, responseBodyValue.Interface())
 		if err != nil {
 			return nil, err
 		}
@@ -89,13 +91,13 @@ func vultrPaginatedGet(client http_utility.HttpClient, baseEndpoint string, outp
 		source.MergeWith(cmdSrc)
 
 		result := responseBodyValue.Elem()
-		meta := result.FieldByName("Meta").Interface().(vultrMeta)
+		pages := result.FieldByName("Pages").Interface().(int64)
 
-		if meta.Links.Next == "" {
+		if page == pages {
 			break
 		}
 
-		cursor = meta.Links.Next
+		page += 1
 	}
 
 	reflectOutPtr.Elem().Set(reflectOutSlice)
