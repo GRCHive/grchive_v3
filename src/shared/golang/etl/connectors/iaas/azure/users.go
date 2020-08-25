@@ -18,25 +18,31 @@ type azureUser struct {
 	CreatedDateTime   time.Time `json:"createdDateTime"`
 }
 
+type azureAppRoleAssignmentProperties struct {
+	PrincipalId      string `json:"principalId"`
+	RoleDefinitionId string `json:"roleDefinitionId"`
+	Scope            string `json:"scope"`
+}
+
 type azureAppRoleAssignment struct {
-	Id         string `json:"id"`
-	Name       string `json:"name"`
-	Properties struct {
-		PrincipalId      string `json:"principalId"`
-		RoleDefinitionId string `json:"roleDefinitionId"`
-		Scope            string `json:"string"`
-	} `json:"properties"`
+	Id         string                           `json:"id"`
+	Name       string                           `json:"name"`
+	Properties azureAppRoleAssignmentProperties `json:"properties"`
+}
+
+type azureRolePermission struct {
+	Actions    []string `json:"actions"`
+	NotActions []string `json:"notActions"`
+}
+
+type azureRoleDefinitionProperties struct {
+	Name        string                `json:"roleName"`
+	Scopes      []string              `json:"assignableScopes"`
+	Permissions []azureRolePermission `json:"permissions"`
 }
 
 type azureRoleDefinition struct {
-	Name       string `json:"roleName"`
-	Properties struct {
-		Scopes      []string `json:"assignableScopes"`
-		Permissions []struct {
-			Actions    []string `json:"actions"`
-			NotActions []string `json:"notActions"`
-		} `json:"permissions"`
-	} `json:"properties"`
+	Properties azureRoleDefinitionProperties `json:"properties"`
 }
 
 func (r *azureRoleDefinition) toEtlRole() *types.EtlRole {
@@ -49,7 +55,7 @@ func (r *azureRoleDefinition) toEtlRole() *types.EtlRole {
 	}
 
 	return &types.EtlRole{
-		Name:        r.Name,
+		Name:        r.Properties.Name,
 		Permissions: permissions,
 	}
 }
