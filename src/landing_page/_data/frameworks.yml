@@ -17,6 +17,7 @@ fsa:
         - azure
         - vultr
         - linode
+        - heroku
         - cloudflare
         - ldap
         - github
@@ -42,6 +43,7 @@ sox:
         - azure
         - vultr
         - linode
+        - heroku
         - cloudflare
         - ldap
         - github
@@ -67,6 +69,7 @@ cmmc:
         - azure
         - vultr
         - linode
+        - heroku
         - cloudflare
         - ldap
         - github
@@ -92,6 +95,7 @@ pci:
         - azure
         - vultr
         - linode
+        - heroku
         - cloudflare
         - ldap
         - github
@@ -116,6 +120,7 @@ hipaa:
         - azure
         - vultr
         - linode
+        - heroku
         - cloudflare
         - ldap
         - github
@@ -142,6 +147,7 @@ fedramp:
         - azure
         - vultr
         - linode
+        - heroku
         - cloudflare
         - ldap
         - github
@@ -166,6 +172,7 @@ iso27001:
         - azure
         - vultr
         - linode
+        - heroku
         - cloudflare
         - ldap
         - github
