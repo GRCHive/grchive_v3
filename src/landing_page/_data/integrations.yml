@@ -49,6 +49,7 @@
       - name: Azure
         icon: /assets/images/logos/azure.png
         alpha: true
+        page: /integrations/azure
       - name: Digital Ocean
         icon: /assets/images/logos/digitalocean.png
         todo: true
