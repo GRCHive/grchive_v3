@@ -1,0 +1,9 @@
+name: Azure
+url: https://azure.microsoft.com
+grcUrl: /integrations/azure
+about: Microsoft Azure provides infrastructure as a service and offers easy access to virtual machines, managed databases, and more. Companies around the world in every industry trust Microsoft to provide them with infrastructure with the same enterprise support as their suite of Windows and Office products.
+status: alpha
+icon: /assets/images/logos/azure.png
+ops:
+    - name: userListing
+      status: alpha
