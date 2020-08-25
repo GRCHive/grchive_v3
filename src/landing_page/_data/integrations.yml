@@ -58,7 +58,8 @@
         todo: true
       - name: Vultr
         icon: /assets/images/logos/vultr.png
-        todo: true
+        alpha: true
+        page: /integrations/vultr
 
 - name: PaaS
   integrations:

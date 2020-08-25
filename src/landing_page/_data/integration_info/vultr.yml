@@ -1,0 +1,9 @@
+name: Vultr
+url: https://www.vultr.com/
+grcUrl: /integrations/vultr
+about: Vultr provides infrastructure as a service and offers easy access to virtual machines and dedicated servers.
+status: alpha
+icon: /assets/images/logos/vultr.png
+ops:
+    - name: userListing
+      status: alpha
