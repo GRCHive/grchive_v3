@@ -1,0 +1,9 @@
+name: Linode
+url: https://www.linode.com/
+grcUrl: /integrations/linode
+about: Linode provides infrastructure as a service and offers easy access to virtual machines and dedicated servers.
+status: alpha
+icon: /assets/images/logos/linode.png
+ops:
+    - name: userListing
+      status: alpha

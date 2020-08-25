@@ -16,6 +16,7 @@ fsa:
         - aws
         - azure
         - vultr
+        - linode
         - cloudflare
         - ldap
         - github
@@ -40,6 +41,7 @@ sox:
         - aws
         - azure
         - vultr
+        - linode
         - cloudflare
         - ldap
         - github
@@ -64,6 +66,7 @@ cmmc:
         - aws
         - azure
         - vultr
+        - linode
         - cloudflare
         - ldap
         - github
@@ -88,6 +91,7 @@ pci:
         - aws
         - azure
         - vultr
+        - linode
         - cloudflare
         - ldap
         - github
@@ -111,6 +115,7 @@ hipaa:
         - aws
         - azure
         - vultr
+        - linode
         - cloudflare
         - ldap
         - github
@@ -136,6 +141,7 @@ fedramp:
         - aws
         - azure
         - vultr
+        - linode
         - cloudflare
         - ldap
         - github
@@ -159,6 +165,7 @@ iso27001:
         - aws
         - azure
         - vultr
+        - linode
         - cloudflare
         - ldap
         - github

@@ -55,7 +55,8 @@
         todo: true
       - name: Linode
         icon: /assets/images/logos/linode.png
-        todo: true
+        alpha: true
+        page: /integrations/linode
       - name: Vultr
         icon: /assets/images/logos/vultr.png
         alpha: true
