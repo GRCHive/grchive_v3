@@ -1,0 +1,9 @@
+name: Okta
+url: https://www.okta.com/
+grcUrl: /integrations/okta
+about: Okta provides identity as a service and allows organizations around the world to securely manage their employees' and users' identities and credentials.
+status: alpha
+icon: /assets/images/logos/okta.png
+ops:
+    - name: userListing
+      status: alpha

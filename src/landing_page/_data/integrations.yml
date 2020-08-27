@@ -90,7 +90,8 @@
         todo: true
       - name: Okta
         icon: /assets/images/logos/okta.png
-        todo: true
+        alpha: true
+        page: /integrations/okta
       - name: Auth0
         icon: /assets/images/logos/auth0.png
         todo: true
