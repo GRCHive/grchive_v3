@@ -1,0 +1,13 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "lib",
+    srcs = glob([
+        "*.go",
+    ]),
+    importpath = "gitlab.com/grchive/grchive-v3/shared/utility/linkheader",
+    deps = [
+    ],
+)
