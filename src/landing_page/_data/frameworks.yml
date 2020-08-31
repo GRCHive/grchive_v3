@@ -23,6 +23,8 @@ fsa:
         - github
         - gitlab
         - bitbucket
+        - okta
+        - auth0
 sox:
     shortName: SOX
     fullName: Sarbanes-Oxley
@@ -49,6 +51,8 @@ sox:
         - github
         - gitlab
         - bitbucket
+        - okta
+        - auth0
 
 cmmc:
     shortName: CMMC
@@ -75,6 +79,8 @@ cmmc:
         - github
         - gitlab
         - bitbucket
+        - okta
+        - auth0
 
 pci:
     shortName: PCI DSS
@@ -101,6 +107,8 @@ pci:
         - github
         - gitlab
         - bitbucket
+        - okta
+        - auth0
 hipaa:
     shortName: HIPAA
     fullName: Health Insurance Portability and Accountability Act
@@ -126,6 +134,8 @@ hipaa:
         - github
         - gitlab
         - bitbucket
+        - okta
+        - auth0
 
 
 fedramp:
@@ -153,6 +163,8 @@ fedramp:
         - github
         - gitlab
         - bitbucket
+        - okta
+        - auth0
 
 iso27001:
     shortName: ISO27001
@@ -178,3 +190,5 @@ iso27001:
         - github
         - gitlab
         - bitbucket
+        - okta
+        - auth0

@@ -1,0 +1,9 @@
+name: Auth0
+url: https://www.auth0.com/
+grcUrl: /integrations/auth0
+about: Auth0 provides identity as a service and allows organizations around the world to securely manage their employees' and users' identities and credentials.
+status: alpha
+icon: /assets/images/logos/auth0.png
+ops:
+    - name: userListing
+      status: alpha

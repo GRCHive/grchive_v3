@@ -94,7 +94,8 @@
         page: /integrations/okta
       - name: Auth0
         icon: /assets/images/logos/auth0.png
-        todo: true
+        alpha: true
+        page: /integrations/auth0
 
 - name: DevOps
   integrations:
