@@ -1,0 +1,39 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "auth0_utility",
+    srcs = [
+        "mock_auth0.go",
+    ],
+    importpath = "gitlab.com/grchive/grchive-v3/tests/shared/etl/connectors/iam/auth0_utility",
+    deps = [
+        "//src/shared/golang/test_utility:lib",
+    ],
+)
+
+go_test(
+    name = "users_test",
+    srcs = ["users_test.go"],
+    deps = [
+        "@com_github_onsi_gomega//:go_default_library",
+        "//src/shared/golang/etl/types:lib",
+        "//src/shared/golang/test_utility:lib",
+        ":auth0_utility",
+    ],
+    embed = [
+        "//src/shared/golang/etl/connectors/iam/auth0:lib",
+    ],
+)
+
+go_test(
+    name = "connector_test",
+    srcs = ["connector_test.go"],
+    deps = [
+        "@com_github_onsi_gomega//:go_default_library",
+    ],
+    embed = [
+        "//src/shared/golang/etl/connectors/iam/auth0:lib",
+    ],
+)
