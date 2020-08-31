@@ -3,7 +3,7 @@ fsa:
     fullName: Financial Statement Auditing
     chipColor: badge-primary
     url: /fsa
-    description: FSA has been used since the days of the ancient Egyptians, Greeks, and Romans to maintain public accounts. It provides independence assurance that management has presented a "true and fair" view of a company's financial performance and position in its financial statements.
+    description: The idea of financial audits has been around since the days of the ancient Egyptians, Greeks, and Romans to maintain public accounts. It provides independence assurance that management has presented a "true and fair" view of a company's financial performance and position in its financial statements. The Securities and Exchange Act of 1934 created the Securities and Exchange Commission (SEC). The SEC is a federal agency put into place to protect investors by requiring exchange-listed companies to disclose financially relevant information (e.g. financial statements) to the public. The first American Institute of Certified Public Accountants (AICPA) statement on auditing procedures was published in October 1939 (Statement on Auditing Procedure No. 1).
     structure:  structures/internal.html
     enforcer: pcaob
     useCases:
@@ -30,7 +30,7 @@ sox:
     fullName: Sarbanes-Oxley
     chipColor: badge-secondary
     url: /sox
-    description: The Sarbanes-Oxley Act is a federal law that reformed and standardized business financial practices in response to corporate accounting scandals in the early 2000s (e.g. Enron). The 2002 act is aimed at publicly held corporation, their internal financial controls, and their financial reporting auditing procedures as performed by external auditing firms. In particular, Section 404 of SOX requires public companies's annual reports to include the company's own assessment of internal controls over financial reporting as well as an independent auditor's attestation.
+    description: The Sarbanes-Oxley Act is a federal law that reformed and standardized business financial practices in response to corporate accounting scandals in the early 2000s (e.g. Enron). The 2002 act is aimed at publicly held corporation, their internal financial controls, and their financial reporting auditing procedures as performed by external auditing firms. In particular, Section 404 of SOX requires public companies' annual reports to include the company's own assessment of internal controls over financial reporting as well as an independent auditor's attestation.
     infoUrl: https://www.sec.gov/answers/about-lawsshtml.html#sox2002
     enforcer: pcaob
     structure: structures/internal.html
@@ -87,7 +87,7 @@ pci:
     fullName: Payment Card Industry Data Security Standards
     chipColor: badge-danger
     url: /pci
-    description: The PCI DSS is an information security standard for all organizations that handle store, process, or transmit cardholder data (CHD) or sensitive authentication data (SAD). The PCI DSS is adminstered and enforced by the PCI SSC which was founded in 2006 by American Express, Discover, JCB International, MasterCard and Visa to align each individual card company's security policies to provide additional protections to the card issuer.
+    description: The PCI DSS is an information security standard for all organizations that handle store, process, or transmit cardholder data (CHD) or sensitive authentication data (SAD). The PCI DSS is administered and enforced by the PCI SSC which was founded in 2006 by American Express, Discover, JCB International, MasterCard and Visa to align each individual card company's security policies to provide additional protections to the card issuer.
     infoUrl: https://www.pcisecuritystandards.org/
     enforcer: pcissc
     structure: structures/pci.html
@@ -114,7 +114,7 @@ hipaa:
     fullName: Health Insurance Portability and Accountability Act
     chipColor: badge-warning
     url: /hipaa
-    description: HIPAA was passed by Congress and signed by President Bill Clinton in 1996. HIPAA mandates industry-wide standards for health care information to protect and to ensure the confidentiality of protected health information (PHI) and personally identifiable information (PII). The scope of HIPAA was expanded with the pasage of the HITECH Act in 2009.
+    description: HIPAA was passed by Congress and signed by President Bill Clinton in 1996. HIPAA mandates industry-wide standards for health care information to protect and to ensure the confidentiality of protected health information (PHI) and personally identifiable information (PII). The scope of HIPAA was expanded with the passage of the HITECH Act in 2009.
     infoUrl: https://www.hhs.gov/hipaa/index.html
     enforcer: hhs
     structure: structures/hipaa.html
@@ -143,7 +143,7 @@ fedramp:
     fullName: Federal Risk and Authorization Management Program
     chipColor: badge-info
     url: /fedramp
-    description: FedRAMP was created in 2011 by the US OMB to ensure the security and integrity of cloud services provided to federal agencies.
+    description: FedRAMP was created in 2011 by the US OMB to ensure the security and integrity of cloud services provided to federal agencies. Agencies that fall under the FedRAMP requirement must submit a quarterly report detailing all cloud services that are not FedRAMP compliant. Rationale for current noncompliance and future planned solutions to achieve compliance are also required.
     infoUrl: https://www.fedramp.gov/
     enforcer: omb
     structure: structures/fedramp.html

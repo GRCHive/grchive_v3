@@ -8,7 +8,7 @@ pcissc:
     name: Payment Card Industry Security Standards Council
     url: https://www.pcisecuritystandards.org/
 hhs:
-    name: US Deparment of Health & Human Services
+    name: US Department of Health & Human Services
     url: https://www.hhs.gov
 omb:
     name: US Office of Management and Budget
