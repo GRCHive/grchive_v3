@@ -3,3 +3,8 @@ self-host-postgresql:
     alt: Self-Hosted PostgreSQL
     url: https://www.postgresql.org/
     icon: /assets/images/logos/postgresql.png
+self-host-mysql:
+    name: Self-Hosted
+    alt: Self-Hosted MySQL
+    url: https://www.mysql.com
+    icon: /assets/images/logos/mysql.png

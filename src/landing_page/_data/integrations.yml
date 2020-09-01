@@ -6,7 +6,8 @@
         page: /integrations/postgresql
       - name: MySQL
         icon: /assets/images/logos/mysql.png
-        todo: true
+        alpha: true
+        page: /integrations/mysql
       - name: MariaDB
         icon: /assets/images/logos/mariadb.png
         todo: true

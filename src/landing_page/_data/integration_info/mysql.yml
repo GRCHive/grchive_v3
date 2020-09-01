@@ -1,0 +1,15 @@
+name: MySQL
+url: https://www.mysql.com/
+grcUrl: /integrations/mysql
+about: <a href="https://www.mysql.com">MySQL</a> is an open source relational database management system (RDBMS). It is widely used around the world and is available as a managed service from <a href="https://cloud.google.com/sql">Google Cloud</a>, <a href="https://aws.amazon.com/rds/postgresql/">AWS</a>, <a href="https://azure.microsoft.com/en-us/services/postgresql/">Azure</a>, and more!
+status: alpha
+icon: /assets/images/logos/mysql.png
+versions:
+    - 8.x
+    - 5.7.x
+    - 5.6.x
+ops:
+    - name: userListing
+      status: alpha
+services:
+    - self-host-mysql
