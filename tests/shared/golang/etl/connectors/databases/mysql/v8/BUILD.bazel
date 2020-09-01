@@ -1,0 +1,29 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_test(
+    name = "factory_test",
+    srcs = ["factory_test.go"],
+    deps = [
+        "@com_github_onsi_gomega//:go_default_library",
+        "//src/shared/golang/test_utility:lib",
+    ],
+    embed = [
+        "//src/shared/golang/etl/connectors/databases/mysql/v8:lib",
+    ],
+)
+
+go_test(
+    name = "users_test",
+    srcs = ["users_test.go"],
+    deps = [
+        "@com_github_onsi_gomega//:go_default_library",
+        "//src/shared/golang/test_utility:lib",
+        "//tests/shared/golang/etl/connectors/databases/mysql:mysql_utility",
+        "//src/shared/golang/etl/types:lib",
+    ],
+    embed = [
+        "//src/shared/golang/etl/connectors/databases/mysql/v8:lib",
+    ],
+)

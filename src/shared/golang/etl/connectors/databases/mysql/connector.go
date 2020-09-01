@@ -4,6 +4,7 @@ import (
 	"errors"
 	"gitlab.com/grchive/grchive-v3/shared/etl/connectors"
 	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/databases"
+	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/databases/mysql/v5"
 	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/databases/mysql/v8"
 	"strconv"
 	"strings"
@@ -15,10 +16,10 @@ type EtlMysqlInterfaceFactory interface {
 
 type EtlMysqlConnector struct {
 	db    databases.SqlxLike
-	users *EtlMysqlConnectorUser
+	users connectors.EtlConnectorUserInterface
 }
 
-type mysqlVersion struct {
+type MysqlVersion struct {
 	MajorVersion int
 	MinorVersion int
 	AuxVersion   string
@@ -28,7 +29,7 @@ func (c *EtlMysqlConnector) GetUserInterface() (connectors.EtlConnectorUserInter
 	return c.users, nil
 }
 
-func obtainMysqlVersion(db databases.SqlxLike) (*mysqlVersion, error) {
+func ObtainMysqlVersion(db databases.SqlxLike) (*MysqlVersion, error) {
 	rows, err := db.Queryx("SELECT VERSION()")
 	if err != nil {
 		return nil, err
@@ -44,33 +45,30 @@ func obtainMysqlVersion(db databases.SqlxLike) (*mysqlVersion, error) {
 
 	splitVersion := strings.Split(version, ".")
 
-	majorVersion, err := strconv.Atoi(splitVersion[0], 10, 64)
+	majorVersion, err := strconv.Atoi(splitVersion[0])
 	if err != nil {
 		return nil, err
 	}
 
-	minorVersion, err := strconv.Atoi(splitVersion[1], 10, 64)
+	minorVersion, err := strconv.Atoi(splitVersion[1])
 	if err != nil {
 		return nil, err
 	}
 
-	return &mysqlVersion{
+	return &MysqlVersion{
 		MajorVersion: majorVersion,
 		MinorVersion: minorVersion,
 		AuxVersion:   splitVersion[2],
 	}, nil
 }
 
-func CreateMysqlConnector(db databases.SqlxLike) (*EtlMysqlConnector, error) {
+func CreateMysqlConnector(db databases.SqlxLike, version MysqlVersion) (*EtlMysqlConnector, error) {
 	var err error
 	ret := EtlMysqlConnector{
 		db: db,
 	}
 
-	// Use the input Sql connection to check the version of MySQL that we're dealing with and use that to determine
-	// which interfaces to create.
 	var versionFactory EtlMysqlInterfaceFactory
-	version, err := obtainMysqlVersion(db)
 	if err != nil {
 		return nil, err
 	}
@@ -78,6 +76,7 @@ func CreateMysqlConnector(db databases.SqlxLike) (*EtlMysqlConnector, error) {
 	if version.MajorVersion == 8 {
 		versionFactory = &v8.InterfaceFactory{}
 	} else if version.MajorVersion == 5 {
+		versionFactory = &v5.InterfaceFactory{}
 	} else {
 		return nil, errors.New("Unsupported MySQL version.")
 	}
