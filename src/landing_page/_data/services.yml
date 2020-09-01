@@ -8,3 +8,8 @@ self-host-mysql:
     alt: Self-Hosted MySQL
     url: https://www.mysql.com
     icon: /assets/images/logos/mysql.png
+self-host-mariadb:
+    name: Self-Hosted
+    alt: Self-Hosted MariaDB
+    url: https://www.mariadb.com
+    icon: /assets/images/logos/mariadb.png

@@ -10,7 +10,8 @@
         page: /integrations/mysql
       - name: MariaDB
         icon: /assets/images/logos/mariadb.png
-        todo: true
+        alpha: true
+        page: /integrations/mariadb
       - name: Oracle
         icon: /assets/images/logos/oracle.png
         todo: true

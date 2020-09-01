@@ -12,6 +12,7 @@ fsa:
     integrations:
         - postgresql
         - mysql
+        - mariadb
         - gsuite
         - gcloud
         - aws
@@ -41,6 +42,7 @@ sox:
     integrations:
         - postgresql
         - mysql
+        - mariadb
         - gsuite
         - gcloud
         - aws
@@ -70,6 +72,7 @@ cmmc:
     integrations:
         - postgresql
         - mysql
+        - mariadb
         - gsuite
         - gcloud
         - aws
@@ -99,6 +102,7 @@ pci:
     integrations:
         - postgresql
         - mysql
+        - mariadb
         - gsuite
         - gcloud
         - aws
@@ -127,6 +131,7 @@ hipaa:
     integrations:
         - postgresql
         - mysql
+        - mariadb
         - gsuite
         - gcloud
         - aws
@@ -157,6 +162,7 @@ fedramp:
     integrations:
         - postgresql
         - mysql
+        - mariadb
         - gsuite
         - gcloud
         - aws
@@ -185,6 +191,7 @@ iso27001:
     integrations:
         - postgresql
         - mysql
+        - mariadb
         - gsuite
         - gcloud
         - aws

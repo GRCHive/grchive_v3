@@ -1,0 +1,17 @@
+name: MariaDB
+url: https://www.mariadb.com/
+grcUrl: /integrations/mariadb
+about: <a href="https://www.mariadb.com">MariaDB</a> is an open source relational database management system (RDBMS) that was forked from MySQL in 2009 due to MySQL's acquisition by Oracle. It is widely used around the world and is available as a managed service from <a href="https://cloud.google.com/sql">Google Cloud</a>, <a href="https://aws.amazon.com/rds/postgresql/">AWS</a>, <a href="https://azure.microsoft.com/en-us/services/postgresql/">Azure</a>, and more!
+status: alpha
+icon: /assets/images/logos/mariadb.png
+versions:
+    - 10.1.x
+    - 10.2.x
+    - 10.3.x
+    - 10.4.x
+    - 10.5.x
+ops:
+    - name: userListing
+      status: alpha
+services:
+    - self-host-mariadb
