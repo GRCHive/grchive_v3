@@ -1,0 +1,46 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "mariadb_utility",
+    srcs = [
+        "mariadb_db.go",
+    ],
+    importpath = "gitlab.com/grchive/grchive-v3/tests/shared/etl/connectors/databases/mariadb_utility",
+    deps = [
+        "@com_github_go_sql_driver_mysql//:go_default_library",
+        "@com_github_jmoiron_sqlx//:go_default_library",
+        "@com_github_testcontainers_testcontainers_go//:go_default_library",
+        "@com_github_testcontainers_testcontainers_go//wait:go_default_library",
+    ],
+)
+
+go_test(
+    name = "connector_test",
+    srcs = ["connector_test.go"],
+    deps = [
+        "//src/shared/golang/test_utility:lib",
+        "@com_github_jmoiron_sqlx//:go_default_library",
+        "@com_github_onsi_gomega//:go_default_library",
+        "//src/shared/golang/etl/connectors/databases/mysql/v8:lib",
+    ],
+    embed = [
+        "//src/shared/golang/etl/connectors/databases/mariadb:lib",
+    ],
+)
+
+go_test(
+    name = "users_test",
+    srcs = ["users_test.go"],
+    deps = [
+        "@com_github_onsi_gomega//:go_default_library",
+        "//src/shared/golang/test_utility:lib",
+        "//tests/shared/golang/etl/connectors/databases/mariadb:mariadb_utility",
+        "//src/shared/golang/etl/types:lib",
+
+    ],
+    embed = [
+        "//src/shared/golang/etl/connectors/databases/mariadb:lib",
+    ],
+)

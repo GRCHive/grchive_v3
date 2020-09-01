@@ -7,11 +7,9 @@ go_library(
     srcs = glob([
         "*.go",
     ]),
-    importpath = "gitlab.com/grchive/grchive-v3/shared/etl/connectors/databases/mysql",
+    importpath = "gitlab.com/grchive/grchive-v3/shared/etl/connectors/databases/mariadb",
     deps = [
         "@com_github_jmoiron_sqlx//:go_default_library",
-        "//src/shared/golang/etl/connectors/databases/mysql/v5:lib",
-        "//src/shared/golang/etl/connectors/databases/mysql/v8:lib",
         "//src/shared/golang/etl/connectors:lib",
         "//src/shared/golang/etl/connectors/databases:lib",
         "//src/shared/golang/etl/types:lib",
