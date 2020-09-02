@@ -1,5 +1,5 @@
 <div class="row justify-content-center info-div">
-    <div class="col-5 {% if include.ltr %}order-first{% else %}order-last{% endif %}">
+    <div class="col-10 col-md-7 col-lg-5 {% if include.ltr %}order-first{% else %}order-last{% endif %}">
         <h3 class="info-title">
             {{ include.info_header }}
         </h3>
@@ -19,7 +19,7 @@
         {% endif %}
     </div>
 
-    <div class="col-5 {% if include.ltr %}order-last{% else %}order-first{% endif %}">
+    <div class="col-10 col-md-3 col-lg-5 {% if include.ltr %}order-last{% else %}order-first{% endif %}">
         <div class="info-image-wrapper">
             <img
                 class="info-image"

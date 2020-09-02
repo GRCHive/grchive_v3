@@ -1,4 +1,8 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-light navbar-toggler navbar-expand-lg grc-nav-bar">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#grchive-navbar" aria-controls="grchive-navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
     <a 
         class="navbar-brand"
         href="/"
@@ -12,40 +16,42 @@
         </img>
     </a>
 
-    <ul class="navbar-nav">
-    {% for item in site.data.navigation %}
-        {% if item.children | size > 0 %}
-            <li class="nav-item dropdown">
-                <a
-                    class="nav-link dropdown-toggle grc-nav-link"
-                    data-toggle="dropdown"
-                    title="{{ item.name }}"
-                >
-                    {{ item.name }}
-                </a>
-                <div class="dropdown-menu">
-                    {% for child in item.children %}
-                        <a
-                            class="dropdown-item"
-                            href="{{ child.link }}"
-                            title="{{ child.name }}"
-                        >
-                            {{ child.name }}
-                        </a>
-                    {% endfor %}
-                </div>
-            </li>
-        {% else %}
-            <li class="nav-item">
-                <a
-                    href="{{ item.link}}"
-                    class="nav-link grc-nav-link"
-                    title="{{ item.name }}"
-                >
-                    {{ item.name }}
-                </a>
-            </li>
-        {% endif %}
-    {% endfor %}
-    </ul>
+    <div class="collapse navbar-collapse" id="grchive-navbar">
+        <ul class="navbar-nav">
+        {% for item in site.data.navigation %}
+            {% if item.children | size > 0 %}
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle grc-nav-link"
+                        data-toggle="dropdown"
+                        title="{{ item.name }}"
+                    >
+                        {{ item.name }}
+                    </a>
+                    <div class="dropdown-menu">
+                        {% for child in item.children %}
+                            <a
+                                class="dropdown-item"
+                                href="{{ child.link }}"
+                                title="{{ child.name }}"
+                            >
+                                {{ child.name }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a
+                        href="{{ item.link}}"
+                        class="nav-link grc-nav-link"
+                        title="{{ item.name }}"
+                    >
+                        {{ item.name }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
 </nav>

@@ -39,3 +39,14 @@
     letter-spacing: .009375em;
     color: #82b1ff;
 }
+
+@media screen and (max-width: 576px) {
+    .order-first {
+        order: 1 !important;
+    }
+
+    .order-last {
+        order: 1 !important;
+    }
+
+}

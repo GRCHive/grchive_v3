@@ -1,5 +1,14 @@
+.grc-footer {
+}
+
+.footer-social {
+}
+
+.footer-nav {
+}
+
 .footer-div {
-    height: 400px;
+    min-height: 400px;
 }
 
 .footer-icon {
@@ -33,7 +42,43 @@
     line-height: 1.25rem;
 }
 
+.footer-copyright {
+    text-align: end;
+}
+
 #footer-legal {
     background-color: #263238;
-    height: 50px;
+    min-height: 50px;
+}
+
+@media screen and (max-width: 768px) {
+    .grc-footer {
+        margin-top: 32px;
+    }
+
+    .footer-div {
+        min-height: 0;
+    }
+
+    .footer-nav {
+        display: none;
+    }
+
+    #footer-logo {
+        display: flex;
+        justify-content: center;
+    }
+
+    #footer-legal {
+        margin-top: 32px;
+    }
+
+    .footer-social {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-text {
+        text-align: center;
+    }
 }
