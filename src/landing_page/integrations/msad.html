@@ -1,0 +1,21 @@
+---
+layout: default
+title: Automated Audit Data Intake for Active Directory
+meta: GRCHive's automated audit data intake solution can help you to automatically obtain data from Active Directory. Contact us to see how we can help!
+permalink: /integrations/msad
+canonicalUrl: https://www.grchive.com/integrations/msad
+---
+
+{% include cta.html %}
+{% include cta_header.html
+    cta_header_title="GRCHive for Active Directory"
+    cta_header_image="/assets/images/generic-banner2.jpg"
+    cta_header_description="Doing a user access review? Many companies keep their users on a directory server accessible via Active Directory. See how GRCHive can help you automatically pull those users to save you time during the PBC process."
+    cta_text="I need this!"
+    cta_show_learn_more=true
+%}
+
+{% assign obj = site.data.integration_info["msad"] %}
+{% include integration_info.html 
+    data=obj
+%}

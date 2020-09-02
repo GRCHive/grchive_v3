@@ -13,3 +13,18 @@ self-host-mariadb:
     alt: Self-Hosted MariaDB
     url: https://www.mariadb.com
     icon: /assets/images/logos/mariadb.png
+self-host-msad:
+    name: On-Premise
+    alt: On-Premise Active Directory
+    url: https://www.microsoft.com/en-us/windows-server
+    icon: /assets/images/logos/activedirectory.png
+azure-ad-msad:
+    name: Azure AD
+    alt: Azure AD
+    url: https://azure.microsoft.com/en-us/services/active-directory/
+    icon: /assets/images/logos/azure.png
+azure-ad-ds-msad:
+    name: Azure AD Domain Services
+    alt: Azure AD Domain Services
+    url: https://azure.microsoft.com/en-us/services/active-directory-ds/
+    icon: /assets/images/logos/azureadds.png

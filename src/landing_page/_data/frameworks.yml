@@ -22,6 +22,7 @@ fsa:
         - heroku
         - cloudflare
         - ldap
+        - msad
         - github
         - gitlab
         - bitbucket
@@ -52,6 +53,7 @@ sox:
         - heroku
         - cloudflare
         - ldap
+        - msad
         - github
         - gitlab
         - bitbucket
@@ -82,6 +84,7 @@ cmmc:
         - heroku
         - cloudflare
         - ldap
+        - msad
         - github
         - gitlab
         - bitbucket
@@ -112,6 +115,7 @@ pci:
         - heroku
         - cloudflare
         - ldap
+        - msad
         - github
         - gitlab
         - bitbucket
@@ -141,6 +145,7 @@ hipaa:
         - heroku
         - cloudflare
         - ldap
+        - msad
         - github
         - gitlab
         - bitbucket
@@ -172,6 +177,7 @@ fedramp:
         - heroku
         - cloudflare
         - ldap
+        - msad
         - github
         - gitlab
         - bitbucket
@@ -201,6 +207,7 @@ iso27001:
         - heroku
         - cloudflare
         - ldap
+        - msad
         - github
         - gitlab
         - bitbucket

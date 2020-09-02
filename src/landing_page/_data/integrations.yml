@@ -89,7 +89,8 @@
         page: /integrations/ldap
       - name: Active Directory
         icon: /assets/images/logos/activedirectory.png
-        todo: true
+        alpha: true
+        page: /integrations/msad
       - name: Okta
         icon: /assets/images/logos/okta.png
         alpha: true

@@ -1,0 +1,13 @@
+name: Active Directory
+url: https://azure.microsoft.com/en-us/services/active-directory/
+grcUrl: /integrations/msad
+about: Microsoft Active Directory is a directory service trusted by enterprises around the world to manage the digital identity of their employees.
+status: alpha
+icon: /assets/images/logos/activedirectory.png
+ops:
+    - name: userListing
+      status: alpha
+services:
+    - self-host-msad
+    - azure-ad-msad
+    - azure-ad-ds-msad
