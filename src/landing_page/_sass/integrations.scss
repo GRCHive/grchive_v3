@@ -4,7 +4,7 @@
     padding-bottom: 50px;
 }
 
-.integration-info-section.alt {
+.integration-info-section:nth-child(2n) {
     background-color: #F4F4F4;
 }
 
@@ -49,4 +49,10 @@
     width: 75px;
     height: 75x;
     margin-right: 16px;
+}
+
+@media screen and (max-width: 576px) {
+    .integration-plus {
+        display: none !important;
+    }
 }

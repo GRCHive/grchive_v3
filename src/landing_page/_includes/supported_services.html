@@ -19,7 +19,7 @@
     <div class="carousel-inner">
 
         {% for i in (1..numPanels) %}
-            <div class="d-flex justify-content-center carousel-item grchive {% if i == 1 %} active {% endif %}">
+            <div class="d-flex flex-wrap justify-content-center carousel-item grchive {% if i == 1 %} active {% endif %}">
                 {% assign startIdx = i | minus: 1 | times: 3 %}
                 {% assign endIdx= i | times: 3 | at_most: maxIndex %}
 

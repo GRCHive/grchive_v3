@@ -8,11 +8,11 @@
     </div>
 
     <div class="row justify-content-center integration-info-section">
-        <div class="col-8">
+        <div class="col-12 col-lg-8">
             <h3 class="text-center">What is {{ include.data.name }}?</h3>
             <p class="text-center">{{ include.data.about }}</p>
 
-            <div class="integration-love d-flex justify-content-center">
+            <div class="integration-love d-flex flex-wrap justify-content-center">
                 <a href="{{ include.data.url }}">
                     <img
                         class="integration-image"
@@ -22,8 +22,10 @@
                     </img>
                 </a>
 
-                <div class="d-flex align-items-center integration-plus">
-                    <i class="fas fa-plus fa-2x"></i>
+                <div class="d-flex align-items-center">
+                    <div class="integration-plus">
+                        <i class="fas fa-plus fa-2x"></i>
+                    </div>
                 </div>
 
                 <a href="/">
@@ -38,8 +40,8 @@
         </div>
     </div>
 
-    <div class="row justify-content-center integration-info-section alt">
-        <div class="col-8">
+    <div class="row justify-content-center integration-info-section">
+        <div class="col-12 col-lg-8">
             {% include supported_data.html
                 ops=include.data.ops
              %}
@@ -48,7 +50,7 @@
 
     {% if include.data.services %}
     <div class="row justify-content-center integration-info-section">
-        <div class="col-8">
+        <div class="col-12 col-lg-8">
             {% include supported_services.html
                 services=include.data.services
              %}
@@ -57,8 +59,8 @@
     {% endif %}
 
     {% if include.data.versions %}
-    <div class="row justify-content-center integration-info-section alt">
-        <div class="col-8">
+    <div class="row justify-content-center integration-info-section">
+        <div class="col-12 col-lg-8">
             {% include supported_versions.html
                 versions=include.data.versions
              %}
@@ -67,7 +69,7 @@
     {% endif %}
 
     <div class="row justify-content-center integration-info-section">
-        <div class="col-8">
+        <div class="col-12 col-lg-8">
             <h3 class="text-center">GRCHive: Automated data intake for your next audit engagement.</h3>
             <h6 class="text-center">Spend less time chasing after PBC requests for data coming from {{ include.data.name}} and more.</h6>
 
