@@ -9,15 +9,15 @@
     <lastmod>2020-08-21</lastmod>
   </url>
   <url>
-    <loc>https://www.grchive.com/integrations/aws</loc>
-    <lastmod>2020-08-21</lastmod>
+    <loc>https://www.grchive.com/integrations/mysql</loc>
+    <lastmod>2020-09-02</lastmod>
   </url>
   <url>
-    <loc>https://www.grchive.com/integrations/bitbucket</loc>
-    <lastmod>2020-08-21</lastmod>
+    <loc>https://www.grchive.com/integrations/mariadb</loc>
+    <lastmod>2020-09-02</lastmod>
   </url>
   <url>
-    <loc>https://www.grchive.com/integrations/cloudflare</loc>
+    <loc>https://www.grchive.com/integrations/gsuite</loc>
     <lastmod>2020-08-21</lastmod>
   </url>
   <url>
@@ -25,19 +25,55 @@
     <lastmod>2020-08-21</lastmod>
   </url>
   <url>
-    <loc>https://www.grchive.com/integrations/gitlab</loc>
+    <loc>https://www.grchive.com/integrations/aws</loc>
     <lastmod>2020-08-21</lastmod>
   </url>
   <url>
-    <loc>https://www.grchive.com/integrations/gsuite</loc>
+    <loc>https://www.grchive.com/integrations/azure</loc>
+    <lastmod>2020-09-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/linode</loc>
+    <lastmod>2020-09-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/vultr</loc>
+    <lastmod>2020-09-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/heroku</loc>
+    <lastmod>2020-09-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/cloudflare</loc>
     <lastmod>2020-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/ldap</loc>
+    <lastmod>2020-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/msad</loc>
+    <lastmod>2020-09-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/okta</loc>
+    <lastmod>2020-09-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/auth0</loc>
+    <lastmod>2020-09-02</lastmod>
   </url>
   <url>
     <loc>https://www.grchive.com/integrations/github</loc>
     <lastmod>2020-08-21</lastmod>
   </url>
   <url>
-    <loc>https://www.grchive.com/integrations/ldap</loc>
+    <loc>https://www.grchive.com/integrations/gitlab</loc>
+    <lastmod>2020-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.grchive.com/integrations/bitbucket</loc>
     <lastmod>2020-08-21</lastmod>
   </url>
   <url>
