@@ -57,11 +57,7 @@ func main() {
 	}
 
 	connector, err := office365.CreateOffice365Connector(&office365.EtlOffice365Options{
-		office365.EtlAzureOptions{
-			GraphClient:      auth_utility.CreateAzureHttpClient(graphTs),
-			ManagementClient: nil,
-			SubscriptionId:   "",
-		},
+		Client: auth_utility.CreateAzureHttpClient(graphTs),
 	})
 	if err != nil {
 		fmt.Printf("Create Connector Error: %s\n", err.Error())

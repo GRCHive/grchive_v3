@@ -3,11 +3,11 @@ package office365
 import (
 	"gitlab.com/grchive/grchive-v3/shared/etl/connectors"
 	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/iaas/azure"
+	"gitlab.com/grchive/grchive-v3/shared/utility/http"
 )
 
-type EtlAzureOptions = azure.EtlAzureOptions
 type EtlOffice365Options struct {
-	EtlAzureOptions
+	Client http_utility.HttpClient
 }
 
 type EtlOffice365Connector struct {
@@ -24,7 +24,9 @@ func CreateOffice365Connector(opts *EtlOffice365Options) (*EtlOffice365Connector
 	ret := EtlOffice365Connector{
 		opts: opts,
 	}
-	ret.users, err = azure.CreateAzureConnectorUser(&opts.EtlAzureOptions)
+	ret.users, err = azure.CreateAzureConnectorUser(&azure.EtlAzureOptions{
+		GraphClient: opts.Client,
+	})
 
 	if err != nil {
 		return nil, err
