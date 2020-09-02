@@ -34,8 +34,8 @@
         icon: /assets/images/logos/gsuite.png
         alpha: true
         page: /integrations/gsuite
-      - name: Microsoft Exchange 365
-        icon: /assets/images/logos/exchange.svg
+      - name: Microsoft Office 365
+        icon: /assets/images/logos/office365.png
         todo: true
       - name: Salesforce
         icon: /assets/images/logos/salesforce.png

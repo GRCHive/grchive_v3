@@ -1,0 +1,16 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@io_bazel_rules_go//go:def.bzl", "go_binary")
+
+go_binary(
+    name = "bin",
+    srcs = glob([
+        "*.go",
+    ]),
+    deps = [
+        "@org_golang_x_oauth2//:go_default_library",
+        "//src/shared/golang/etl/connectors/saas/office365:lib",
+        "//src/shared/golang/utility/auth:lib",
+        "//src/shared/golang/utility/http:lib",
+    ],
+)

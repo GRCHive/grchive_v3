@@ -45,6 +45,22 @@ type azureRoleDefinition struct {
 	Properties azureRoleDefinitionProperties `json:"properties"`
 }
 
+type azureDirectoryRole struct {
+	Id          string `json:"id"`
+	DisplayName string `json:"displayName"`
+}
+
+type azureDirectoryObject struct {
+	Id string `json:"id"`
+}
+
+func (r azureDirectoryRole) toEtlRole() *types.EtlRole {
+	return &types.EtlRole{
+		Name:        r.DisplayName,
+		Permissions: map[string][]string{},
+	}
+}
+
 func (r *azureRoleDefinition) toEtlRole() *types.EtlRole {
 	permissions := map[string][]string{}
 	for _, scope := range r.Properties.Scopes {
@@ -79,7 +95,7 @@ type EtlAzureConnectorUser struct {
 	opts *EtlAzureOptions
 }
 
-func createAzureConnectorUser(opts *EtlAzureOptions) (*EtlAzureConnectorUser, error) {
+func CreateAzureConnectorUser(opts *EtlAzureOptions) (*EtlAzureConnectorUser, error) {
 	return &EtlAzureConnectorUser{
 		opts: opts,
 	}, nil
@@ -105,13 +121,13 @@ func (c *EtlAzureConnectorUser) getAllUsers() ([]azureUser, *connectors.EtlSourc
 	return retUsers, source, nil
 }
 
-func (c *EtlAzureConnectorUser) getUserAppRoleAssignments(u *azureUser) ([]azureAppRoleAssignment, *connectors.EtlSourceInfo, error) {
+func (c *EtlAzureConnectorUser) getUserAppRoleAssignments(userId string) ([]azureAppRoleAssignment, *connectors.EtlSourceInfo, error) {
 	type ResponseBody struct {
 		NextLink string                   `json:"@odata.nextLink"`
 		Value    []azureAppRoleAssignment `json:"value"`
 	}
 
-	endpoint := fmt.Sprintf("%s/subscriptions/%s/providers/Microsoft.Authorization/roleAssignments?api-version=2015-07-01&$filter=assignedTo('%s')", azureManagementUrl, c.opts.SubscriptionId, u.Id)
+	endpoint := fmt.Sprintf("%s/subscriptions/%s/providers/Microsoft.Authorization/roleAssignments?api-version=2015-07-01&$filter=assignedTo('%s')", azureManagementUrl, c.opts.SubscriptionId, userId)
 	responses := []ResponseBody{}
 	source, err := azurePaginatedGet(c.opts.ManagementClient, endpoint, &responses)
 	if err != nil {
@@ -138,7 +154,7 @@ func (c *EtlAzureConnectorUser) getRoleDefinition(definitionId string) (*azureRo
 
 type azureGetUserAppRoleAssignmentJob struct {
 	// Input
-	User      *azureUser
+	UserId    string
 	Connector *EtlAzureConnectorUser
 
 	// Output
@@ -147,7 +163,7 @@ type azureGetUserAppRoleAssignmentJob struct {
 }
 
 func (j *azureGetUserAppRoleAssignmentJob) Do() error {
-	roles, source, err := j.Connector.getUserAppRoleAssignments(j.User)
+	roles, source, err := j.Connector.getUserAppRoleAssignments(j.UserId)
 	if err != nil {
 		return err
 	}
@@ -178,20 +194,11 @@ func (j *azureGetRoleDefinitionJob) Do() error {
 	return nil
 }
 
-func (c *EtlAzureConnectorUser) GetUserListing() ([]*types.EtlUser, *connectors.EtlSourceInfo, error) {
-
-	finalSource := connectors.CreateSourceInfo()
-
-	// Step 1: Get all users.
-	azureUsers, userSource, err := c.getAllUsers()
-	if err != nil {
-		return nil, nil, err
-	}
-	finalSource.MergeWith(userSource)
-
+func (c *EtlAzureConnectorUser) getPerUserAzureRoles(azureUsers []azureUser, outRoles map[string][]*types.EtlRole) (*connectors.EtlSourceInfo, error) {
 	wg := sync.WaitGroup{}
 	wg.Add(1)
 
+	finalSource := connectors.CreateSourceInfo()
 	sourcesToMerge := make(chan *connectors.EtlSourceInfo)
 	go func(source *connectors.EtlSourceInfo, input chan *connectors.EtlSourceInfo) {
 		defer wg.Done()
@@ -200,7 +207,7 @@ func (c *EtlAzureConnectorUser) GetUserListing() ([]*types.EtlUser, *connectors.
 		}
 	}(finalSource, sourcesToMerge)
 
-	// Step 2: Get roles assigned to each user
+	// Step 1: Get Azure roles assigned to each user
 	perUserRoles := map[string]*[]azureAppRoleAssignment{}
 	{
 
@@ -210,7 +217,7 @@ func (c *EtlAzureConnectorUser) GetUserListing() ([]*types.EtlUser, *connectors.
 			roles := []azureAppRoleAssignment{}
 
 			pool.AddJob(&azureGetUserAppRoleAssignmentJob{
-				User:      &u,
+				UserId:    u.Id,
 				Connector: c,
 				Roles:     &roles,
 				OutSource: sourcesToMerge,
@@ -221,11 +228,11 @@ func (c *EtlAzureConnectorUser) GetUserListing() ([]*types.EtlUser, *connectors.
 
 		err := pool.SyncExecute()
 		if err != nil {
-			return nil, nil, err
+			return nil, err
 		}
 	}
 
-	// Step 3: For all unique roles, get the role definition.
+	// Step 2: For all unique roles, get the role definition.
 	perRoleDefinitions := map[string]*azureRoleDefinition{}
 	uniqueAppRoles := map[string]*azureAppRoleAssignment{}
 	{
@@ -256,28 +263,148 @@ func (c *EtlAzureConnectorUser) GetUserListing() ([]*types.EtlUser, *connectors.
 
 		err := pool.SyncExecute()
 		if err != nil {
-			return nil, nil, err
+			return nil, err
 		}
 	}
 
-	// Step 4: Convert all the data we collected to our standardized format.
+	close(sourcesToMerge)
+	wg.Wait()
+
+	// Step 3: Convert all the data we collected to our standardized format.
 	etlRoles := map[string]*types.EtlRole{}
 	for _, role := range uniqueAppRoles {
 		definition := perRoleDefinitions[role.Id]
 		etlRoles[role.Id] = definition.toEtlRole()
 	}
 
+	// Step 4: Assign roles to user.
+	for _, u := range azureUsers {
+		userRoles, ok := outRoles[u.Id]
+		if !ok {
+			userRoles = []*types.EtlRole{}
+		}
+
+		for _, role := range *perUserRoles[u.UserPrincipalName] {
+			etlRole := etlRoles[role.Id]
+			userRoles = append(userRoles, etlRole)
+		}
+		outRoles[u.Id] = userRoles
+	}
+
+	return finalSource, nil
+}
+
+func (c *EtlAzureConnectorUser) listDirectoryRoles() ([]azureDirectoryRole, *connectors.EtlSourceInfo, error) {
+	type ResponseBody struct {
+		NextLink string               `json:"@odata.nextLink"`
+		Value    []azureDirectoryRole `json:"value"`
+	}
+
+	endpoint := fmt.Sprintf("%s/directoryRoles", baseGraphUrl)
+	responses := []ResponseBody{}
+	source, err := azurePaginatedGet(c.opts.GraphClient, endpoint, &responses)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	retRoles := []azureDirectoryRole{}
+	for _, resp := range responses {
+		retRoles = append(retRoles, resp.Value...)
+	}
+	return retRoles, source, nil
+}
+
+func (c *EtlAzureConnectorUser) listUsersInDirectoryRole(roleId string) ([]azureDirectoryObject, *connectors.EtlSourceInfo, error) {
+	type ResponseBody struct {
+		NextLink string                 `json:"@odata.nextLink"`
+		Value    []azureDirectoryObject `json:"value"`
+	}
+
+	endpoint := fmt.Sprintf("%s/directoryRoles/%s/members", baseGraphUrl, roleId)
+	responses := []ResponseBody{}
+	source, err := azurePaginatedGet(c.opts.GraphClient, endpoint, &responses)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	retObjects := []azureDirectoryObject{}
+	for _, resp := range responses {
+		retObjects = append(retObjects, resp.Value...)
+	}
+	return retObjects, source, nil
+}
+
+func (c *EtlAzureConnectorUser) getPerUserDirectoryRoles(outRoles map[string][]*types.EtlRole) (*connectors.EtlSourceInfo, error) {
+	finalSource := connectors.CreateSourceInfo()
+	// This is slightly inefficient since we're querying every role when there might not necessarily be a user in every role but
+	// the Microsoft Graph API doesn't seem to expose any other way of getting this information.
+	// Step 1: List all directory roles.
+	roles, src, err := c.listDirectoryRoles()
+	if err != nil {
+		return nil, err
+	}
+	finalSource.MergeWith(src)
+
+	// Step 2: For each directory role, list the users in it.
+	for _, r := range roles {
+		members, src, err := c.listUsersInDirectoryRole(r.Id)
+		if err != nil {
+			return nil, err
+		}
+		finalSource.MergeWith(src)
+
+		etlRole := r.toEtlRole()
+		for _, m := range members {
+			roleList, ok := outRoles[m.Id]
+			if !ok {
+				roleList = []*types.EtlRole{}
+			}
+
+			roleList = append(roleList, etlRole)
+			outRoles[m.Id] = roleList
+		}
+	}
+
+	return finalSource, nil
+}
+
+func (c *EtlAzureConnectorUser) GetUserListing() ([]*types.EtlUser, *connectors.EtlSourceInfo, error) {
+	finalSource := connectors.CreateSourceInfo()
+
+	// Step 1: Get all users.
+	azureUsers, userSource, err := c.getAllUsers()
+	if err != nil {
+		return nil, nil, err
+	}
+	finalSource.MergeWith(userSource)
+
+	perUserRoles := map[string][]*types.EtlRole{}
+	// Step 2: Get Azure Roles. This only takes place is an Azure Subscription Id is passed in.
+	if c.opts.SubscriptionId != "" {
+		src, err := c.getPerUserAzureRoles(azureUsers, perUserRoles)
+		if err != nil {
+			return nil, nil, err
+		}
+		finalSource.MergeWith(src)
+	}
+
+	// Step 3: Get Directory Roles.
+	{
+		src, err := c.getPerUserDirectoryRoles(perUserRoles)
+		if err != nil {
+			return nil, nil, err
+		}
+		finalSource.MergeWith(src)
+	}
+
 	retUsers := []*types.EtlUser{}
 	for _, u := range azureUsers {
 		etlUser := u.toEtlUser()
-		for _, role := range *perUserRoles[u.UserPrincipalName] {
-			etlRole := etlRoles[role.Id]
-			etlUser.Roles[etlRole.Name] = etlRole
+		for _, role := range perUserRoles[u.Id] {
+			etlUser.Roles[role.Name] = role
 		}
 		retUsers = append(retUsers, etlUser)
 	}
 
-	close(sourcesToMerge)
-	wg.Wait()
 	return retUsers, finalSource, nil
 }

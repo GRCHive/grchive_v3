@@ -28,7 +28,7 @@ func CreateAzureConnector(opts *EtlAzureOptions) (*EtlAzureConnector, error) {
 	ret := EtlAzureConnector{
 		opts: opts,
 	}
-	ret.users, err = createAzureConnectorUser(opts)
+	ret.users, err = CreateAzureConnectorUser(opts)
 
 	if err != nil {
 		return nil, err

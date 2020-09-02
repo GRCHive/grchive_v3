@@ -21,6 +21,18 @@ func createGraphClient() *azure_utility.MockAzureGraphClient {
 {"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#users(displayName,userPrincipalName,mail,otherMails,createdDateTime,id)","value":[{"displayName":"Michael Bao","userPrincipalName":"mike_grchive.com#EXT#@mikegrchive.onmicrosoft.com","mail":null,"otherMails":["mike@grchive.com"],"createdDateTime":"%s","id":"1e7ef588-4893-486c-a879-00af5d017734"}]}
 `, refTime1.Format(time.RFC3339))), nil
 		},
+		DirectoryRoles: func() (*http.Response, error) {
+			return test_utility.WrapHttpResponse(`
+{"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#directoryRoles","value":[{"id":"01b64ea3-a49a-4254-9d71-69094919d3a3","deletedDateTime":null,"description":"Can manage all aspects of the Exchange product.","displayName":"Exchange Service Administrator","roleTemplateId":"29232cdf-9323-42fd-ade2-1d097af3e4de"}]}
+`), nil
+		},
+		DirectoryRoleMembers: map[string]azure_utility.MockAzureFn{
+			"01b64ea3-a49a-4254-9d71-69094919d3a3": func() (*http.Response, error) {
+				return test_utility.WrapHttpResponse(`
+{"@odata.context":"https://graph.microsoft.com/v1.0/$metadata#directoryObjects","value":[{"@odata.type":"#microsoft.graph.user","id":"1e7ef588-4893-486c-a879-00af5d017734"}]}
+`), nil
+			},
+		},
 	}
 }
 
@@ -100,7 +112,7 @@ func TestGetUserAppRoleAssignments(t *testing.T) {
 		},
 	}
 
-	assignments, source, err := conn.users.getUserAppRoleAssignments(&testUser)
+	assignments, source, err := conn.users.getUserAppRoleAssignments(testUser.Id)
 	g.Expect(err).To(gomega.BeNil())
 	g.Expect(len(source.Commands)).To(gomega.Equal(1))
 	g.Expect(assignments).To(gomega.Equal(refAssignments))
@@ -220,7 +232,7 @@ func TestGetUserListing(t *testing.T) {
 	g.Expect(err).To(gomega.BeNil())
 
 	g.Expect(err).To(gomega.BeNil())
-	g.Expect(len(source.Commands)).To(gomega.Equal(3))
+	g.Expect(len(source.Commands)).To(gomega.Equal(5))
 
 	refUsers := map[string]*types.EtlUser{
 		"mike_grchive.com#EXT#@mikegrchive.onmicrosoft.com": &types.EtlUser{
@@ -234,6 +246,10 @@ func TestGetUserListing(t *testing.T) {
 					Permissions: map[string][]string{
 						"/": []string{"*"},
 					},
+				},
+				"Exchange Service Administrator": &types.EtlRole{
+					Name:        "Exchange Service Administrator",
+					Permissions: map[string][]string{},
 				},
 			},
 		},
