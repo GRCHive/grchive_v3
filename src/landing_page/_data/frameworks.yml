@@ -14,6 +14,7 @@ fsa:
         - mysql
         - mariadb
         - gsuite
+        - office365
         - gcloud
         - aws
         - azure
@@ -45,6 +46,7 @@ sox:
         - mysql
         - mariadb
         - gsuite
+        - office365
         - gcloud
         - aws
         - azure
@@ -76,6 +78,7 @@ cmmc:
         - mysql
         - mariadb
         - gsuite
+        - office365
         - gcloud
         - aws
         - azure
@@ -107,6 +110,7 @@ pci:
         - mysql
         - mariadb
         - gsuite
+        - office365
         - gcloud
         - aws
         - azure
@@ -137,6 +141,7 @@ hipaa:
         - mysql
         - mariadb
         - gsuite
+        - office365
         - gcloud
         - aws
         - azure
@@ -169,6 +174,7 @@ fedramp:
         - mysql
         - mariadb
         - gsuite
+        - office365
         - gcloud
         - aws
         - azure
@@ -199,6 +205,7 @@ iso27001:
         - mysql
         - mariadb
         - gsuite
+        - office365
         - gcloud
         - aws
         - azure

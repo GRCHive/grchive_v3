@@ -1,0 +1,9 @@
+name: Office 365
+url: https://www.office.com
+grcUrl: /integrations/office365
+about: Office 365 is a suite of collaboration and productivity apps provided by Microsoft. Organizations around the world trust Office 365 to provide them with custom-domain emails for their members along with access to familiar collaboration tools such as Microsoft Office and Microsoft Teams.
+status: alpha
+icon: /assets/images/logos/office365.png
+ops:
+    - name: userListing
+      status: alpha

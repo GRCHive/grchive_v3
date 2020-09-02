@@ -36,7 +36,8 @@
         page: /integrations/gsuite
       - name: Microsoft Office 365
         icon: /assets/images/logos/office365.png
-        todo: true
+        alpha: true
+        page: /integrations/office365
       - name: Salesforce
         icon: /assets/images/logos/salesforce.png
         todo: true
