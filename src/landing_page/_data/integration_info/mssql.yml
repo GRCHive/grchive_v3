@@ -1,0 +1,14 @@
+name: Microsoft SQL Server
+url: https://www.microsoft.com/en-us/sql-server
+grcUrl: /integrations/mssql
+about: <a href="https://www.microsoft.com/en-us/sql-server">Microsoft SQL Server</a> is an enterprise-ready relational database management system (RDBMS) used by organizations around the world.
+status: alpha
+icon: /assets/images/logos/mssql.png
+versions:
+    - 2019.x
+    - 2017.x
+ops:
+    - name: userListing
+      status: alpha
+services:
+    - self-host-mssql

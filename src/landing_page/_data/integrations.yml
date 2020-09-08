@@ -15,9 +15,10 @@
       - name: Oracle
         icon: /assets/images/logos/oracle.png
         todo: true
-      - name: Microsoft SQL
+      - name: Microsoft SQL Server
         icon: /assets/images/logos/mssql.png
-        todo: true
+        alpha: true
+        page: /integrations/mssql
       - name: IBM DB2
         icon: /assets/images/logos/ibmdb2.png
         todo: true

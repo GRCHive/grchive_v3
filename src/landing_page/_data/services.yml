@@ -28,3 +28,9 @@ azure-ad-ds-msad:
     alt: Azure AD Domain Services
     url: https://azure.microsoft.com/en-us/services/active-directory-ds/
     icon: /assets/images/logos/azureadds.png
+self-host-mssql:
+    name: Self-Hosted
+    alt: Self-Hosted Microsoft SQL Server
+    url: https://www.microsoft.com/en-us/sql-server
+    icon: /assets/images/logos/mssql.png
+
