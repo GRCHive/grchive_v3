@@ -46,10 +46,19 @@ USER:
 
 		g.Expect(len(u.Roles)).To(gomega.Equal(len(refU.Roles)))
 
+		// Need to do this instead of just doing g.Expect.To(Equal) because we don't want the time
+		// check to be so exact.
+		nestedUserList := []*types.EtlUser{}
+		for _, uu := range u.NestedUsers {
+			nestedUserList = append(nestedUserList, uu)
+		}
+		CompareUserListing(g, nestedUserList, refU.NestedUsers, CompareUserListingOptions{})
+
 		for rkey, r := range u.Roles {
 			refRole, ok := refU.Roles[rkey]
 			g.Expect(ok).To(gomega.BeTrue(), "Finding role: "+rkey)
 			g.Expect(r.Name).To(gomega.Equal(refRole.Name))
+
 			g.Expect(len(r.Permissions)).To(gomega.Equal(len(refRole.Permissions)))
 
 		PERM:
@@ -65,10 +74,25 @@ USER:
 
 				sort.Strings(permissions)
 				sort.Strings(refPermissions)
-				g.Expect(len(permissions)).To(gomega.Equal(len(refPermissions)))
-				for i, p := range permissions {
-					g.Expect(p).To(gomega.Equal(refPermissions[i]))
+				g.Expect(permissions).To(gomega.Equal(refPermissions))
+			}
+
+			g.Expect(len(r.Denied)).To(gomega.Equal(len(refRole.Denied)))
+
+		DENY:
+			for object, permissions := range r.Denied {
+				for _, o := range opts.PermissionObjectsToIgnore {
+					if strings.Contains(object, o) {
+						continue DENY
+					}
 				}
+
+				refPermissions, ok := refRole.Denied[object]
+				g.Expect(ok).To(gomega.BeTrue(), "Failed to find ref denid: "+object)
+
+				sort.Strings(permissions)
+				sort.Strings(refPermissions)
+				g.Expect(permissions).To(gomega.Equal(refPermissions))
 			}
 		}
 	}

@@ -766,3 +766,15 @@ def load_golang_deps():
         sum = "h1:FBt+5w3q/vPVPb4eYMQSn+pOiz4zewPamYhlGMmc7yM=",
         version = "v3.2.3",
     )
+    go_repository(
+        name = "com_github_denisenkom_go_mssqldb",
+        importpath = "github.com/denisenkom/go-mssqldb",
+        sum = "h1:uuDqxM2PbeYyXcKIo/IP0ZLGDzougMipEBBrCOzr50w=",
+        version = "v0.0.0-20200831201914-36b6ff1bbc10",
+    )
+    go_repository(
+        name = "com_github_golang_sql_civil",
+        importpath = "github.com/golang-sql/civil",
+        sum = "h1:lXe2qZdvpiX5WZkZR4hgp4KJVfY3nMkvmwbVkpv1rVY=",
+        version = "v0.0.0-20190719163853-cb61b32ac6fe",
+    )

@@ -1,13 +1,17 @@
 package mssql
 
 import (
+	"database/sql"
 	"fmt"
 	"gitlab.com/grchive/grchive-v3/shared/etl/connectors"
 	"gitlab.com/grchive/grchive-v3/shared/etl/connectors/databases"
 	"gitlab.com/grchive/grchive-v3/shared/etl/types"
+	"gitlab.com/grchive/grchive-v3/shared/utility/strings"
 	"strings"
 	"time"
 )
+
+const GUEST_SID string = "AA"
 
 const (
 	SERVER_PRINCIPAL_TABLE     string = "sys.server_principals"
@@ -40,9 +44,9 @@ const (
 )
 
 type mssqlPermission struct {
-	PermissionName string
-	State          string
-	Object         string
+	PermissionName sql.NullString
+	State          sql.NullString
+	Object         sql.NullString
 }
 
 type mssqlPrincipal struct {
@@ -61,6 +65,7 @@ func (p mssqlPrincipal) toEtlUser() *types.EtlUser {
 		Roles: map[string]*types.EtlRole{
 			selfRole.Name: selfRole,
 		},
+		NestedUsers: map[string]*types.EtlUser{},
 	}
 }
 
@@ -69,10 +74,14 @@ func (p mssqlPrincipal) toEtlRole() *types.EtlRole {
 	denied := types.PermissionMap{}
 
 	for _, perm := range p.Permissions {
-		if perm.State == PERMISSION_DENY_STATE || perm.State == PERMISSION_REVOKE_STATE {
-			denied[perm.Object] = append(denied[perm.Object], perm.PermissionName)
+		if !perm.PermissionName.Valid || !perm.State.Valid || !perm.Object.Valid {
+			continue
+		}
+
+		if perm.State.String == PERMISSION_DENY_STATE || perm.State.String == PERMISSION_REVOKE_STATE {
+			denied[perm.Object.String] = append(denied[perm.Object.String], perm.PermissionName.String)
 		} else {
-			granted[perm.Object] = append(granted[perm.Object], perm.PermissionName)
+			granted[perm.Object.String] = append(granted[perm.Object.String], perm.PermissionName.String)
 		}
 	}
 
@@ -111,7 +120,15 @@ func (c *EtlMssqlConnectorUser) getPrincipals(principalTable string, permissionT
 			prin.create_date,
 			perm.permission_name,
 			perm.state,
-			CONCAT(perm.class_desc, '::', o.type_desc, '::', s.name, '.', o.name) AS object
+			CONCAT(
+				perm.class_desc COLLATE DATABASE_DEFAULT,
+				'::',
+				o.type_desc COLLATE DATABASE_DEFAULT,
+				'::',
+				s.name COLLATE DATABASE_DEFAULT,
+				'.',
+				o.name COLLATE DATABASE_DEFAULT
+			) AS object
 		FROM %s AS prin
 		LEFT JOIN %s AS perm
 			ON perm.grantee_principal_id = prin.principal_id
@@ -119,8 +136,10 @@ func (c *EtlMssqlConnectorUser) getPrincipals(principalTable string, permissionT
 			ON perm.major_id = o.object_id
 		LEFT JOIN sys.schemas AS s
 			ON s.schema_id = o.schema_id
-		WHERE type IN (%s) AND sid IS NOT NULL
-	`, principalTable, permissionTable, strings.Join(types, ",")))
+		WHERE prin.type IN (%s) AND prin.sid IS NOT NULL
+	`, principalTable, permissionTable, strings.Join(strings_utility.Map(types, func(s string) string {
+		return fmt.Sprintf("'%s'", s)
+	}), ",")))
 
 	if err != nil {
 		return nil, nil, err
@@ -291,7 +310,17 @@ func (c *EtlMssqlConnectorUser) GetUserListing() ([]*types.EtlUser, *connectors.
 		}
 
 		for k, v := range etlUsers {
-			sidToUser[k].NestedUsers[v.Username] = v
+			parentUser, ok := sidToUser[k]
+			if ok {
+				parentUser.NestedUsers[v.Username] = v
+			} else if k == GUEST_SID {
+				// Guest user can  and should be given to all logins.
+				for _, p := range sidToUser {
+					p.NestedUsers[v.Username] = v
+				}
+			} else {
+				continue
+			}
 		}
 	}
 

@@ -13,5 +13,6 @@ go_library(
         "//src/shared/golang/etl/connectors:lib",
         "//src/shared/golang/etl/connectors/databases:lib",
         "//src/shared/golang/etl/types:lib",
+        "//src/shared/golang/utility/strings:lib",
     ],
 )
