@@ -14,7 +14,8 @@
         page: /integrations/mariadb
       - name: Oracle
         icon: /assets/images/logos/oracle.png
-        todo: true
+        alpha: true
+        page: /integrations/oracle
       - name: Microsoft SQL Server
         icon: /assets/images/logos/mssql.png
         alpha: true

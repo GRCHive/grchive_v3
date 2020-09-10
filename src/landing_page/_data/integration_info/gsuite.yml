@@ -1,6 +1,6 @@
 name: G Suite
 url: https://gsuite.google.com/
-grcUrl: /integrations/suite
+grcUrl: /integrations/gsuite
 about: G Suite is a suite of collaboration and productivity apps provided by Google. Organizations around the world trust G Suite to provide them with custom-domain emails for their members along with access to collaboration tools such as Google Drive and Google Docs.
 status: alpha
 icon: /assets/images/logos/gsuite.png

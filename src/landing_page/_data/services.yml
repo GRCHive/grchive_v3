@@ -33,4 +33,9 @@ self-host-mssql:
     alt: Self-Hosted Microsoft SQL Server
     url: https://www.microsoft.com/en-us/sql-server
     icon: /assets/images/logos/mssql.png
+self-host-oracle:
+    name: Self-Hosted
+    alt: Self-Hosted Oracle Server
+    url: https://www.oracle.com/database/
+    icon: /assets/images/logos/oracle.png
 

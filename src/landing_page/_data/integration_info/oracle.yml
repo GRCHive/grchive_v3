@@ -1,0 +1,15 @@
+name: Oracle
+url: https://www.oracle.com/database/
+grcUrl: /integrations/oracle
+about: <a href="https://www.oracle.com/database/">Oracle</a> is an enterprise-ready relational database management system (RDBMS) used by organizations around the world.
+status: alpha
+icon: /assets/images/logos/oracle.png
+versions:
+    - 19.x
+    - 18.x
+    - 12.2.x
+ops:
+    - name: userListing
+      status: alpha
+services:
+    - self-host-oracle
