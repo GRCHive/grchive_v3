@@ -5,7 +5,7 @@ about: <a href="https://www.ibm.com/analytics/db2">IBM DB2</a> is an enterprise-
 status: alpha
 icon: /assets/images/logos/ibmdb2.png
 versions:
-    - 11.xj
+    - 11.x
 ops:
     - name: userListing
       status: alpha
