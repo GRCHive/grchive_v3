@@ -22,7 +22,8 @@
         page: /integrations/mssql
       - name: IBM DB2
         icon: /assets/images/logos/ibmdb2.png
-        todo: true
+        alpha: true
+        page: /integrations/ibm
 
 - name: SaaS
   integrations:

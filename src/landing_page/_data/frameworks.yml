@@ -15,6 +15,7 @@ fsa:
         - mariadb
         - mssql
         - oracle
+        - ibm
         - gsuite
         - office365
         - gcloud
@@ -49,6 +50,7 @@ sox:
         - mariadb
         - mssql
         - oracle
+        - ibm
         - gsuite
         - office365
         - gcloud
@@ -83,6 +85,7 @@ cmmc:
         - mariadb
         - mssql
         - oracle
+        - ibm
         - gsuite
         - office365
         - gcloud
@@ -117,6 +120,7 @@ pci:
         - mariadb
         - mssql
         - oracle
+        - ibm
         - gsuite
         - office365
         - gcloud
@@ -150,6 +154,7 @@ hipaa:
         - mariadb
         - mssql
         - oracle
+        - ibm
         - gsuite
         - office365
         - gcloud
@@ -185,6 +190,7 @@ fedramp:
         - mariadb
         - mssql
         - oracle
+        - ibm
         - gsuite
         - office365
         - gcloud
@@ -218,6 +224,7 @@ iso27001:
         - mariadb
         - mssql
         - oracle
+        - ibm
         - gsuite
         - office365
         - gcloud

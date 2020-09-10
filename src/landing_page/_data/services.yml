@@ -38,4 +38,9 @@ self-host-oracle:
     alt: Self-Hosted Oracle Server
     url: https://www.oracle.com/database/
     icon: /assets/images/logos/oracle.png
+self-host-ibm:
+    name: Self-Hosted
+    alt: Self-Hosted IBM DB2 Server
+    url: https://www.ibm.com/analytics/db2
+    icon: /assets/images/logos/ibmdb2.png
 
