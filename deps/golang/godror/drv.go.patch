@@ -1,0 +1,11 @@
+--- drv.go.orig	2020-09-10 11:28:02.892770688 -0400
++++ drv.go	2020-09-10 11:30:40.635688880 -0400
+@@ -48,7 +48,7 @@
+ /*
+ #cgo CFLAGS: -I./odpi/include -I./odpi/src -I./odpi/embed
+ 
+-#include "dpi.c"
++#include "dpiImpl.h"
+ */
+ import "C"
+ 

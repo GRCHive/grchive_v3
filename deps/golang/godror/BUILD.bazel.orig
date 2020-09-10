@@ -1,0 +1,102 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "conn.go",
+        "conn_go15.go",
+        "data.go",
+        "drv.go",
+        "drv_posix.go",
+        "lob.go",
+        "obj.go",
+        "orahlp.go",
+        "queue.go",
+        "rows.go",
+        "stmt.go",
+        "stmt_go11.go",
+        "stmt_go13.go",
+        "subscr.c",
+        "subscr.go",
+        "version.go",
+    ],
+    cgo = True,
+    clinkopts = select({
+        "@io_bazel_rules_go//go/platform:aix": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:android": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:darwin": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:dragonfly": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:freebsd": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:illumos": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:ios": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:js": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:linux": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:nacl": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:netbsd": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:openbsd": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:plan9": [
+            "-ldl -lpthread",
+        ],
+        "@io_bazel_rules_go//go/platform:solaris": [
+            "-ldl -lpthread",
+        ],
+        "//conditions:default": [],
+    }),
+    copts = ["-Iodpi/include -Iodpi/src -Iodpi/embed"],
+    importpath = "github.com/godror/godror",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//dsn:go_default_library",
+        "@com_github_go_logfmt_logfmt//:go_default_library",
+        "@org_golang_x_xerrors//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "conn_test.go",
+        "data_test.go",
+        "drv_test.go",
+        "example_shutdown_test.go",
+        "orahlp_test.go",
+        "queue_test.go",
+        "z_bench_test.go",
+        "z_conncut_test.go",
+        "z_heterogeneous_test.go",
+        "z_lob_test.go",
+        "z_plsql_types_test.go",
+        "z_qrcn_test.go",
+        "z_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "@com_github_go_logfmt_logfmt//:go_default_library",
+        "@com_github_google_go_cmp//cmp:go_default_library",
+        "@org_golang_x_sync//errgroup:go_default_library",
+    ],
+)

@@ -778,3 +778,19 @@ def load_golang_deps():
         sum = "h1:lXe2qZdvpiX5WZkZR4hgp4KJVfY3nMkvmwbVkpv1rVY=",
         version = "v0.0.0-20190719163853-cb61b32ac6fe",
     )
+    go_repository(
+        name = "com_github_go_logfmt_logfmt",
+        importpath = "github.com/go-logfmt/logfmt",
+        sum = "h1:TrB8swr/68K7m9CcGut2g3UOihhbcbiMAYiuTXdEih4=",
+        version = "v0.5.0",
+    )
+    go_repository(
+        name = "com_github_godror_godror",
+        importpath = "github.com/godror/godror",
+        sum = "h1:pUBEEMh34bM3ORPYt80qTcCODC18CTIJGqPeHo9Jq5c=",
+        version = "v0.20.0",
+        patches = [
+            "//deps/golang/godror:drv.go.patch",
+            "//deps/golang/godror:BUILD.bazel.patch",
+        ],
+    )

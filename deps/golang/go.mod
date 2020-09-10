@@ -6,6 +6,7 @@ require (
 	github.com/denisenkom/go-mssqldb v0.0.0-20200831201914-36b6ff1bbc10
 	github.com/go-ldap/ldap/v3 v3.2.3
 	github.com/go-sql-driver/mysql v1.5.0
+	github.com/godror/godror v0.20.0
 	github.com/jmoiron/sqlx v1.2.0
 	github.com/lestrrat-go/jwx v1.0.4
 	github.com/lib/pq v1.7.0

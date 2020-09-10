@@ -1,0 +1,9 @@
+package(default_visibility = ["//visibility:public"])
+filegroup(
+    name = "oracle_instantclient",
+    srcs = glob([
+        "linux/**/*",
+    ]) + glob([
+        "cfg/*",
+    ])
+)

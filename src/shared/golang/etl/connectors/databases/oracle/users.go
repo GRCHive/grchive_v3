@@ -10,56 +10,77 @@ import (
 )
 
 const permissionCte = `
-	SELECT
-		col.GRANTEE,
-		'COLUMN::' || col.TABLE_NAME || '.' || col.COLUMN_NAME AS OBJECT,
-		col.PRIVILEGE
-	FROM DBA_COL_PRIVS AS col
-
-	UNION
-
-	SELECT
-		tab.GRANTEE,
-		'TABLE::' || col.TABLE_NAME AS OBJECT,
-		tab.PRIVILEGE
-	FROM DBA_TAB_PRIVS AS tab
-
-	UNION
-
-	SELECT
-		sys.GRANTEE
-		'SYSTEM' AS OBJECT,
-		sys.PRIVILEGE
-	FROM DBA_SYS_PRIVS AS sys
+    SELECT
+        col.GRANTEE,
+        'COLUMN::' || col.TABLE_NAME || '.' || col.COLUMN_NAME AS OBJECT,
+        col.PRIVILEGE
+    FROM DBA_COL_PRIVS col
+    UNION
+    SELECT
+        tab.GRANTEE,
+        'TABLE::' || tab.TABLE_NAME AS OBJECT,
+        tab.PRIVILEGE
+    FROM DBA_TAB_PRIVS tab
+    UNION
+    SELECT
+        sys.GRANTEE,
+        'SYSTEM' AS OBJECT,
+        sys.PRIVILEGE
+    FROM DBA_SYS_PRIVS sys
 `
 
 type oraclePrivilege struct {
-	Grantee   sql.NullString `db:"GRANTEE"`
 	Object    sql.NullString `db:"OBJECT"`
 	Privilege sql.NullString `db:"PRIVILEGE"`
+}
+
+type oraclePrivilegeArray []oraclePrivilege
+
+func (arr oraclePrivilegeArray) toPermissionMap() types.PermissionMap {
+	retMap := types.PermissionMap{}
+	for _, p := range arr {
+		if !p.Object.Valid || !p.Privilege.Valid || p.Object.String == "" || p.Privilege.String == "" {
+			continue
+		}
+
+		perms, ok := retMap[p.Object.String]
+		if !ok {
+			perms = []string{}
+		}
+		perms = append(perms, p.Privilege.String)
+		retMap[p.Object.String] = perms
+	}
+	return retMap
 }
 
 type oracleUser struct {
 	Username   string    `db:"USERNAME"`
 	Created    time.Time `db:"CREATED"`
-	Privileges []oraclePrivilege
+	Privileges oraclePrivilegeArray
 }
 
 func (u oracleUser) toEtlUser() *types.EtlUser {
 	return &types.EtlUser{
 		Username:    u.Username,
 		CreatedTime: &u.Created,
+		Roles: map[string]*types.EtlRole{
+			u.Username: &types.EtlRole{
+				Name:        u.Username,
+				Permissions: u.Privileges.toPermissionMap(),
+			},
+		},
 	}
 }
 
 type oracleRole struct {
 	Role       string `db:"ROLE"`
-	Privileges []oraclePrivilege
+	Privileges oraclePrivilegeArray
 }
 
 func (r oracleRole) toEtlRole() *types.EtlRole {
 	return &types.EtlRole{
-		Name: r.Role,
+		Name:        r.Role,
+		Permissions: r.Privileges.toPermissionMap(),
 	}
 }
 
@@ -89,7 +110,7 @@ func (c *EtlOracleConnectorUser) listDbaUsers() ([]oracleUser, *connectors.EtlSo
 			u.CREATED,
 			perm.OBJECT,
 			perm.PRIVILEGE
-		FROM DBA_USERS AS u
+		FROM DBA_USERS u
 		LEFT JOIN perm
 			ON perm.GRANTEE = u.USERNAME
 	`, permissionCte))
@@ -108,7 +129,6 @@ func (c *EtlOracleConnectorUser) listDbaUsers() ([]oracleUser, *connectors.EtlSo
 		if err != nil {
 			return nil, nil, err
 		}
-
 		mapUser, ok := allUsers[user.Username]
 		if !ok {
 			mapUser = &user
@@ -134,9 +154,9 @@ func (c *EtlOracleConnectorUser) listDbaRoles() ([]oracleRole, *connectors.EtlSo
 			r.ROLE,
 			perm.OBJECT,
 			perm.PRIVILEGE
-		FROM DBA_ROLES AS r
+		FROM DBA_ROLES r
 		LEFT JOIN perm
-			ON perm.GRANTEE = u.USERNAME
+			ON perm.GRANTEE = r.ROLE
 	`, permissionCte))
 	if err != nil {
 		return nil, nil, err

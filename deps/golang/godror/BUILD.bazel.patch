@@ -1,0 +1,27 @@
+--- BUILD.bazel.orig	2020-09-10 11:05:34.185973647 -0400
++++ BUILD.bazel	2020-09-10 11:37:11.299362282 -0400
+@@ -19,7 +19,10 @@
+         "subscr.c",
+         "subscr.go",
+         "version.go",
+-    ],
++    ] + glob([
++        "odpi/src/*",
++        "odpi/include/*",
++    ]),
+     cgo = True,
+     clinkopts = select({
+         "@io_bazel_rules_go//go/platform:aix": [
+@@ -66,7 +69,11 @@
+         ],
+         "//conditions:default": [],
+     }),
+-    copts = ["-Iodpi/include -Iodpi/src -Iodpi/embed"],
++    copts = [
++        "-Iexternal/com_github_godror_godror/odpi/include",
++        "-Iexternal/com_github_godror_godror/odpi/src",
++        "-Iexternal/com_github_godror_godror/odpi/embed",
++        ],
+     importpath = "github.com/godror/godror",
+     visibility = ["//visibility:public"],
+     deps = [
